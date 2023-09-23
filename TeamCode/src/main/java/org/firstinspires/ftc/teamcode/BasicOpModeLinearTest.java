@@ -38,12 +38,11 @@ public class BasicOpModeLinearTest extends LinearOpMode {
 
     public void runOpMode() {
 
-        claw = hardwareMap.get(Servo.class, "claw");
         backLeft = hardwareMap.get(DcMotor.class, "back_left");
         backRight = hardwareMap.get(DcMotor.class, " back_right");
         frontLeft = hardwareMap.get(DcMotor.class, "front_left");
         frontRight = hardwareMap.get(DcMotor.class, "front_right");
-        linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
+
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.REVERSE);
         frontLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -60,35 +59,7 @@ public class BasicOpModeLinearTest extends LinearOpMode {
 
         //  run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            //Moves the claw servo
-            if (gamepad1.b) {
-                position += INCREMENT;
-                if (position >= MAX_POS) {
-                    position = MAX_POS;
-                }
-            } else if (gamepad1.x) {
-                position -= INCREMENT;
-                if (position <= MIN_POS) {
-                    position = MIN_POS;
-                }
-            } else {
-                position = (MAX_POS - MIN_POS) / 2;
-            }
 
-            claw.setPosition(position);
-
-            if (gamepad1.left_trigger > 0) {
-                //go down
-                linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-                linearSlide.setPower(1);
-            } else if (gamepad1.right_trigger > 0) {
-                //go up
-                linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-                linearSlide.setPower(0.8);
-            } else {
-                linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-                linearSlide.setPower(0.05);
-            }
 
 
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
@@ -107,16 +78,6 @@ public class BasicOpModeLinearTest extends LinearOpMode {
 
             // Normalize the values so no wheel power exceeds 100%
             // This ensures that the robot maintains the desired motion.
-            max = Math.max(Math.abs(leftFrontPower), Math.abs(rightFrontPower));
-            max = Math.max(max, Math.abs(leftBackPower));
-            max = Math.max(max, Math.abs(rightBackPower));
-
-            if (max > 1.0) {
-                leftFrontPower /= max;
-                rightFrontPower /= max;
-                leftBackPower /= max;
-                rightBackPower /= max;
-            }
 
 
             // Send calculated power to wheels

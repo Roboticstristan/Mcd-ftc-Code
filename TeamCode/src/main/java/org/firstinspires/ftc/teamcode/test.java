@@ -41,6 +41,37 @@ public class BasicOpModeLinear test{
         waitForStart();
         runtime.restart;
 
+        while (opModeIsActive()){
+            //Moves the claw servo
+            if(gamepad1.b){
+                position += INCREMENT;
+                if (position >= MAX_POS) {
+                    position = MAX_POS;
+                }
+            }else if(gamepad1.x){
+                position -= INCREMENT ;
+                if (position <= MIN_POS ) {
+                    position = MIN_POS;
+                }
+            }else{
+                position  = (MAX_POS - MIN_POS)/2;
+            }
+
+            claw.setPosition(position);
+
+            if(gamepad1.left_trigger > 0) {
+                //go down
+                linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                linearSlide.setPower(1);
+            } else if (gamepad1.right_trigger > 0){
+                //go up
+                linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                linearSlide.setPower(0.8);
+            } else {
+                linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                linearSlide.setPower(0.05);
+            }
+
 
         while(runOpMode();)
             // Left joystick is movement(Forward,Backward,Left,Right) and strafing
