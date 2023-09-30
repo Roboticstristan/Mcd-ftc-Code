@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -12,9 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-// (Bottom Right Square )
-@Autonomous(name="Thread Thingie", group="Auto2022")
-public class duncanTesting extends LinearOpMode{
+public class threadFun extends Thread{
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
@@ -23,6 +22,7 @@ public class duncanTesting extends LinearOpMode{
     private DcMotor backLeft = null;
     private DcMotor linearSlide = null;
     int colorC = 0;
+    int threadNumber;
     //declare color sensor
     private NormalizedColorSensor colorSensor = null;
     //private DcMotor colorSensor = null;
@@ -284,7 +284,6 @@ public class duncanTesting extends LinearOpMode{
     }
 
     public void storeColor(){
-        sleep(1600);
 
 
         NormalizedRGBA color = colorSensor.getNormalizedColors();
@@ -314,7 +313,6 @@ public class duncanTesting extends LinearOpMode{
 
         NormalizedRGBA color = colorSensor.getNormalizedColors();
         {
-            sleep(1750);
             //first option: forward and right
             if (colorC == 1) {
                 DRIVE_DISTANCE_LEFT(12);
@@ -382,36 +380,20 @@ public class duncanTesting extends LinearOpMode{
     }
 
 
-
-    @Override
-    public void runOpMode() {
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
-
-        // Initialize the hardware variables. Note that the strings used here as parameters
-        // to 'get' must correspond to the names assigned during the robot configuration
-        // step (using the FTC Robot Controller app on the phone).
-        frontRight = hardwareMap.get(DcMotor.class, "front_right");
-        frontLeft = hardwareMap.get(DcMotor.class, "front_left");
-        backRight = hardwareMap.get(DcMotor.class, "back_right");
-        backLeft = hardwareMap.get(DcMotor.class, "back_left");
-        linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
-        claw = hardwareMap.get(Servo.class, "claw");
-
-        if (colorSensor instanceof SwitchableLight) {
-            ((SwitchableLight) colorSensor).enableLight(true);
+    public void run() {
+        if(threadNumber == 1){
+            for (int i = 0; i < 5; i++) {
+                telemetry.addData("Number is: ", +i);
+                telemetry.update();
+            }
+        } else if (threadNumber == 2){
+            claw.setPosition(0.5);
+            claw.setPosition(0);
+            claw.setPosition(0.5);
         }
-        claw.setPosition(0);
-        waitForStart();
-        runtime.reset();
+    }
 
-        //run until the end of the match (driver presses STOP)
-        if (opModeIsActive()) {
-            threadFun duncan = new threadFun(2);
-            duncan.start();
-            DRIVE_DISTANCE_FORWARD(100f, -0.4);
-        }
-
+    public threadFun (int threadNumber){
+        this.threadNumber = threadNumber;
     }
 }
-
