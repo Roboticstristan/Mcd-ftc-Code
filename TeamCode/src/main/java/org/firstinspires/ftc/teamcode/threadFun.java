@@ -283,107 +283,13 @@ public class threadFun extends Thread{
         }
     }
 
-    public void storeColor(){
 
-
-        NormalizedRGBA color = colorSensor.getNormalizedColors();
-        //first option: forward and left
-        if (color.blue > color.red && color.blue > color.green) {
-            colorC = 1;
-            telemetry.addData("Color is: ", "blue");
-            telemetry.update();
-        }
-        // second option: forward
-        if (color.red > color.blue && color.red > color.green) {
-            colorC = 2;
-            telemetry.addData("Color is: ", "red");
-            telemetry.update();
-        }
-        //third option: forward and right
-        if (color.green > color.red && color.green > color.blue) {
-
-            colorC = 3;
-            telemetry.addData("Color is: ", "green");
-            telemetry.update();
-        }
-    }
-
-
-    public void runColor() {
-
-        NormalizedRGBA color = colorSensor.getNormalizedColors();
-        {
-            //first option: forward and right
-            if (colorC == 1) {
-                DRIVE_DISTANCE_LEFT(12);
-                DRIVE_DISTANCE_FORWARD(1.5f,0.5);
-                // DRIVE_DISTANCE_RIGHT(12);
-                telemetry.addData("going to: ", "blue");
-                telemetry.update();
-                //go to area one
-            }
-            // second option: forward
-            if (colorC == 2) {
-                //still
-                telemetry.addData("going to: ", "red");
-                telemetry.update();
-            }
-            //third option: forward and left
-            if (colorC == 3) {
-                DRIVE_DISTANCE_RIGHT(16);
-                //DRIVE_DISTANCE_LEFT(12);
-                telemetry.addData("going to: ", "green");
-                telemetry.update();
-                //go to area two
-                //right
-            }
-        }
-    }
-
-
-
-
-
-    //SLEEVE FUNCTION
-    public void senseColor() {
-        //If one of the colors on our sleeve is detected stronger than the other two, it is that color
-        NormalizedRGBA color = colorSensor.getNormalizedColors();
-        //first option: forward and right
-        if (color.blue > color.red && color.blue > color.green) {
-            //claw.setPosition(0.5);
-            DRIVE_DISTANCE_RIGHT(2.8f);
-            DRIVE_DISTANCE_FORWARD(8, 1);
-            DRIVE_DISTANCE_RIGHT(14);
-            telemetry.addData("Color is: ", "blue");
-            DRIVE_DISTANCE_FORWARD(0.5f, 1);
-            telemetry.update();
-        }
-        // second option: forward
-        if (color.red > color.blue && color.red > color.green) {
-            //claw.setPosition(0.5);
-            DRIVE_DISTANCE_RIGHT(2.8f);
-            DRIVE_DISTANCE_FORWARD(8, 1);
-            telemetry.addData("Color is: ", "red");
-            telemetry.update();
-        }
-        //third option: forward and left
-        if (color.green > color.red && color.green > color.blue) {
-            //claw.setPosition(0.5);
-            DRIVE_DISTANCE_RIGHT(2.8f);
-            DRIVE_DISTANCE_FORWARD(8, 1);
-            DRIVE_DISTANCE_LEFT(14);
-            DRIVE_DISTANCE_FORWARD(0.5f, 1);
-            telemetry.addData("Color is: ", "green");
-            telemetry.update();
-
-        }
-    }
 
 
     public void run() {
         if(threadNumber == 1){
             for (int i = 0; i < 5; i++) {
-                telemetry.addData("Number is: ", +i);
+                telemetry.addData("Number is: ", i);
                 telemetry.update();
             }
         } else if (threadNumber == 2){
