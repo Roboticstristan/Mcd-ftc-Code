@@ -10,7 +10,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-@TeleOp
+@TeleOp(name = "DomainExpanison", group = "Sensor")
 public class nuclearFission extends LinearOpMode {
 
     @Override
@@ -33,7 +33,16 @@ public class nuclearFission extends LinearOpMode {
         while (!isStopRequested() && opModeIsActive()){
             if (tagProcessor.getDetections().size() > 0){
                 AprilTagDetection tagYoureIt = tagProcessor.getDetections().get(0);
+
+                telemetry.addData("x", tagYoureIt.ftcPose.x);
+                telemetry.addData("y", tagYoureIt.ftcPose.y);
+                telemetry.addData("z", tagYoureIt.ftcPose.z);
+                telemetry.addData("roll", tagYoureIt.ftcPose.roll);
+                telemetry.addData("pitch", tagYoureIt.ftcPose.pitch);
+                telemetry.addData("yaw", tagYoureIt.ftcPose.yaw);
             }
+
+            telemetry.update();
         }
     }
 }
