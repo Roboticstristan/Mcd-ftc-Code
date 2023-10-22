@@ -10,7 +10,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-@TeleOp(name = "DomainExpanison", group = "Sensor")
+@TeleOp(name = "DomainExpanison", group = "Linear Opmode")
 public class nuclearFission extends LinearOpMode {
 
     @Override
