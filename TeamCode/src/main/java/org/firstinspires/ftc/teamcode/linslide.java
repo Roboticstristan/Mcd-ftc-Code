@@ -24,7 +24,7 @@ public class linslide extends LinearOpMode {
                 linearSlide.setPower(0.9);
             } else {
                     {
-                        linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                        linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                         linearSlide.setPower(0.05);
                     }
                 }
