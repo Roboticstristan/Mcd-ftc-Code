@@ -12,7 +12,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Intake extends LinearOpMode {
     private DcMotor motor1 = null;
     private DcMotor motor2 = null;
-    //2 different directoins
     private ElapsedTime runtime = new ElapsedTime();
     public void runOpMode() {
        int count = 0;
@@ -20,7 +19,7 @@ public class Intake extends LinearOpMode {
         runtime.reset();
         while (opModeIsActive()) {
             motor1 = hardwareMap.get(DcMotor.class, "mouthI");
-            motor2 = hardwareMap.get(DcMotor.class, "bodyI");
+             motor2 = hardwareMap.get(DcMotor.class, "bodyI");
             if (gamepad1.a) {
                 count++;
             }
