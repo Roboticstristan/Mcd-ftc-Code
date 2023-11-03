@@ -24,9 +24,9 @@ public class Automous_Testing_2023 extends LinearOpMode {
 
     private DcMotor linearSlide = null;
     //declare color sensor
-    private NormalizedColorSensor colorSensor = null;
+  //  private NormalizedColorSensor colorSensor = null;
     //private DcMotor colorSensor = null;
-    public Servo claw = null;
+    //public Servo claw = null;
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
@@ -301,10 +301,10 @@ public class Automous_Testing_2023 extends LinearOpMode {
       //  colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
       //  claw = hardwareMap.get(Servo.class, "claw");
 
-        if (colorSensor instanceof SwitchableLight) {
-            ((SwitchableLight)colorSensor).enableLight(true);
-        }
-        claw.setPosition(0);
+       // if (colorSensor instanceof SwitchableLight) {
+       //     ((SwitchableLight)colorSensor).enableLight(true);
+        //}
+       // claw.setPosition(0);
         waitForStart();
         runtime.reset();
 
@@ -325,11 +325,11 @@ public class Automous_Testing_2023 extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(6,0.5);
             sleep(1000);
             //Claw opens up to drop cone7
-            claw.setPosition(0.5);
+           // claw.setPosition(0.5);
             sleep(1000);
             // Linear slide move down to original position
 
-            claw.setPosition(0);
+          //  claw.setPosition(0);
             sleep(1000);
             //drvives foward 1/6 of a tile
             DRIVE_DISTANCE_FORWARD(4.5f,-0.5);
