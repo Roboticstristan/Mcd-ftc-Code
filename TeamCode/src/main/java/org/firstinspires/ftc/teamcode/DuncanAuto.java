@@ -58,6 +58,8 @@ public class DuncanAuto extends LinearOpMode {
         waitForStart();
         runtime.reset();
          */
+        waitForStart();
+        runtime.reset();
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
