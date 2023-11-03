@@ -20,11 +20,11 @@ public class DuncanAuto extends LinearOpMode {
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
-    private DcMotor linearSlide = null;
+    //private DcMotor linearSlide = null;
     //declare color sensor
-    private NormalizedColorSensor colorSensor = null;
+    //private NormalizedColorSensor colorSensor = null;
     //private DcMotor colorSensor = null;
-    public Servo claw = null;
+    //public Servo claw = null;
 
 
     @Override
