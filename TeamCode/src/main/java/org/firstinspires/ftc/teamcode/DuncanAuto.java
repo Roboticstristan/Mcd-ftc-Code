@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Autobots", group = "Auto2023")
+@Autonomous(name = "Autobots", group = "Auto2022")
 public class DuncanAuto extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -31,7 +31,7 @@ public class DuncanAuto extends LinearOpMode {
 
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode()  {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
