@@ -37,10 +37,10 @@ public class DuncanAuto extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        frontRight  = hardwareMap.get(DcMotor.class, "front_right");
-        frontLeft = hardwareMap.get(DcMotor.class, "front_left");
-        backRight = hardwareMap.get(DcMotor.class, "back_right");
-        backLeft = hardwareMap.get(DcMotor.class, "back_left");
+        frontRight  = hardwareMap.get(DcMotor.class, "rightFront_Drive");
+        frontLeft = hardwareMap.get(DcMotor.class, "leftFront_Drive");
+        backRight = hardwareMap.get(DcMotor.class, "rightBack_Drive");
+        backLeft = hardwareMap.get(DcMotor.class, "leftBack_Drive");
         //sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
         //sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");

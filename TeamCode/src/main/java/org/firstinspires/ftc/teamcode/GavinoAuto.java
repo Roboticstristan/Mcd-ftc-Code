@@ -2,15 +2,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
-import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -74,15 +68,15 @@ public class GavinoAuto extends LinearOpMode {
         // 751.8 ticks per rotation
 
         if (power > 0) {
-            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
             frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
             frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            backRight.setDirection(DcMotorSimple.Direction.FORWARD);
+            backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         } else {
-            backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+            backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
             frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-            backRight.setDirection(DcMotorSimple.Direction.REVERSE);
+            backRight.setDirection(DcMotorSimple.Direction.FORWARD);
         }
 
 
@@ -182,9 +176,9 @@ public class GavinoAuto extends LinearOpMode {
         backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
         STOP_AND_RESET_ENCODERS_ALL_WHEELS();
         SET_POWER_ALL_WHEELS(1);
@@ -228,9 +222,9 @@ public class GavinoAuto extends LinearOpMode {
 
         STOP_AND_RESET_ENCODERS_ALL_WHEELS();
         backRight.setDirection(DcMotorSimple.Direction.FORWARD);
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
         SET_POWER_ALL_WHEELS(1);
 
         frontLeft.setTargetPosition(ticks);
@@ -298,7 +292,6 @@ public class GavinoAuto extends LinearOpMode {
     }
 
 
-
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -307,17 +300,15 @@ public class GavinoAuto extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        frontRight  = hardwareMap.get(DcMotor.class, "front_right");
-        frontLeft = hardwareMap.get(DcMotor.class, "front_left");
-        backRight = hardwareMap.get(DcMotor.class, "back_right");
-        backLeft = hardwareMap.get(DcMotor.class, "back_left");
+        frontRight = hardwareMap.get(DcMotor.class, "rightFront_Drive");
+        frontLeft = hardwareMap.get(DcMotor.class, "leftFront_Drive");
+        backRight = hardwareMap.get(DcMotor.class, "rightBack_Drive");
+        backLeft = hardwareMap.get(DcMotor.class, "leftBack_Drive");
         //sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
         //sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
         //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
         //claw = hardwareMap.get(Servo.class, "claw");
-
-        AutoMethods duncan = new AutoMethods(frontLeft, frontRight, backLeft, backRight);
         //AutoMethods duncan = new AutoMethods(sensorRange1, sensorRange2);
 
         /*if (colorSensor instanceof SwitchableLight) {
@@ -332,7 +323,8 @@ public class GavinoAuto extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(30f, 0.8);
+            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            sleep(1000);
          /*   if (duncan.SIX_EYES() == 1) {
                 telemetry.addData("Block Placement:", "Left");
                 //turn left 90
@@ -348,16 +340,19 @@ public class GavinoAuto extends LinearOpMode {
                 //drive forward
                 //place pixel
             }
+        }*/
+
+        DRIVE_DISTANCE_FORWARD(22f, 0.8);
+        DRIVE_DISTANCE_RIGHT(96f);
+        DRIVE_DISTANCE_FORWARD(-24f, 0.8);
+        TURN(1, 30f);
+        DRIVE_DISTANCE_FORWARD(8f,1);
+
+      //  TURN(12,1);
+       // DRIVE_DISTANCE_RIGHT();
+
+
+
         }
-
-        DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-        TURN(1, 30f);
-        DRIVE_DISTANCE_FORWARD(12f, 0.8);
-        DRIVE_DISTANCE_RIGHT(30f, 0.8);
-        TURN(1, 30f);
-*/
-
-        );
-
     }
 }

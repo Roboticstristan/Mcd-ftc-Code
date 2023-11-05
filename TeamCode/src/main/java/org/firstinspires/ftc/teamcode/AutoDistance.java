@@ -1,3 +1,5 @@
+/**
+
 package org.firstinspires.ftc.teamcode;
 
 
@@ -16,11 +18,11 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @Autonomous(name ="Autoshot", group ="Auto2023")
 
 
-public class AutoDistance extends Autonomous{
+public class AutoDistance extends LinearOpMode{
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
     private ElapsedTime runtime = new ElapsedTime();
-    @Override
+    //@Override
 
     public void distanceInput(){
         sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
@@ -51,3 +53,4 @@ public class AutoDistance extends Autonomous{
 
     }
 }
+**/
