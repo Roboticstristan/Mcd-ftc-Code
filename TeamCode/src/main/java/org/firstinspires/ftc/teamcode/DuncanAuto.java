@@ -12,8 +12,7 @@ import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-@Autonomous(name = "Autobots", group = "Auto2022")
+@Autonomous(name="Auto-bots", group="Auto2022")
 public class DuncanAuto extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -31,25 +30,25 @@ public class DuncanAuto extends LinearOpMode {
 
 
     @Override
-    public void runOpMode()  {
+    public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        //frontRight  = hardwareMap.get(DcMotor.class, "front_right");
-        //frontLeft = hardwareMap.get(DcMotor.class, "front_left");
-        //backRight = hardwareMap.get(DcMotor.class, "back_right");
-        //backLeft = hardwareMap.get(DcMotor.class, "back_left");
-        sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
-        sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
+        frontRight  = hardwareMap.get(DcMotor.class, "front_right");
+        frontLeft = hardwareMap.get(DcMotor.class, "front_left");
+        backRight = hardwareMap.get(DcMotor.class, "back_right");
+        backLeft = hardwareMap.get(DcMotor.class, "back_left");
+        //sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
+        //sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
         //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
         //claw = hardwareMap.get(Servo.class, "claw");
 
-        //AutoMethods duncan = new AutoMethods(frontLeft, frontRight, backLeft, backRight, sensorRange1, sensorRange2);
-        AutoMethods duncan = new AutoMethods(sensorRange1, sensorRange2);
+        AutoMethods duncan = new AutoMethods(frontLeft, frontRight, backLeft, backRight);
+        //AutoMethods duncan = new AutoMethods(sensorRange1, sensorRange2);
 
         /*if (colorSensor instanceof SwitchableLight) {
             ((SwitchableLight)colorSensor).enableLight(true);
@@ -63,14 +62,15 @@ public class DuncanAuto extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            //duncan.DRIVE_DISTANCE_FORWARD(12f, 0.5);
-            if (duncan.SIX_EYES() == 1){
+            duncan.DRIVE_DISTANCE_FORWARD(100f, 0.5);
+            /*if (duncan.SIX_EYES() == 1) {
                 telemetry.addData("Block Placement:", "Left");
             } else if (duncan.SIX_EYES() == 2) {
                 telemetry.addData("Block Placement:", "Right");
             } else {
                 telemetry.addData("Block Placement:", "Forward");
             }
+             */
         }
     }
 }

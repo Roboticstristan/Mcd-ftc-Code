@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
 
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,47 +15,21 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-public class AutoMethods extends LinearOpMode {
+@Autonomous(name="El_Salvador", group="Auto2022")
+public class GavinoAuto extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
-    private DcMotor linearSlide = null;
-    //declare color sensor
-    private NormalizedColorSensor colorSensor = null;
-    //private DcMotor colorSensor = null;
-    public Servo claw = null;
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
-
-    public AutoMethods(DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR, DistanceSensor ds1, DistanceSensor ds2){
-        frontLeft = fL;
-        frontRight = fR;
-        backLeft = bL;
-        backRight = bR;
-        sensorRange1 = ds1;
-        sensorRange2 = ds2;
-    }
-
-    public AutoMethods(DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR){
-        frontLeft = fL;
-        frontRight = fR;
-        backLeft = bL;
-        backRight = bR;
-        sensorRange1 = null;
-        sensorRange2 = null;
-    }
-
-    public AutoMethods(DistanceSensor ds1, DistanceSensor ds2){
-        sensorRange1 = ds1;
-        sensorRange2 = ds2;
-        frontLeft = null;
-        frontRight = null;
-        backLeft = null;
-        backRight = null;
-    }
+    //private DcMotor linearSlide = null;
+    //declare color sensor
+    //private NormalizedColorSensor colorSensor = null;
+    //private DcMotor colorSensor = null;
+    //public Servo claw = null;
 
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -281,6 +254,7 @@ public class AutoMethods extends LinearOpMode {
 
     }
 
+    /*
     public void LINEAR_SLIDE_DRIVE(float distance_in_in, double power) {
         float ticksPerInch = 450.149432158f;
         float f_ticks = ticksPerInch * distance_in_in;
@@ -311,6 +285,7 @@ public class AutoMethods extends LinearOpMode {
             telemetry.update();
         }
     }
+     */
 
     public int SIX_EYES() {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
@@ -323,7 +298,49 @@ public class AutoMethods extends LinearOpMode {
     }
 
 
+
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() {
+        telemetry.addData("Status", "Initialized");
+        telemetry.update();
+
+        // Initialize the hardware variables. Note that the strings used here as parameters
+        // to 'get' must correspond to the names assigned during the robot configuration
+        // step (using the FTC Robot Controller app on the phone).
+        frontRight  = hardwareMap.get(DcMotor.class, "front_right");
+        frontLeft = hardwareMap.get(DcMotor.class, "front_left");
+        backRight = hardwareMap.get(DcMotor.class, "back_right");
+        backLeft = hardwareMap.get(DcMotor.class, "back_left");
+        //sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
+        //sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
+        //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
+        //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
+        //claw = hardwareMap.get(Servo.class, "claw");
+
+        AutoMethods duncan = new AutoMethods(frontLeft, frontRight, backLeft, backRight);
+        //AutoMethods duncan = new AutoMethods(sensorRange1, sensorRange2);
+
+        /*if (colorSensor instanceof SwitchableLight) {
+            ((SwitchableLight)colorSensor).enableLight(true);
+        }
+        claw.setPosition(0);
+        waitForStart();
+        runtime.reset();
+         */
+        waitForStart();
+        runtime.reset();
+
+        //run until the end of the match (driver presses STOP)
+        if (opModeIsActive()) {
+            DRIVE_DISTANCE_FORWARD(100f, 0.5);
+            /*if (duncan.SIX_EYES() == 1) {
+                telemetry.addData("Block Placement:", "Left");
+            } else if (duncan.SIX_EYES() == 2) {
+                telemetry.addData("Block Placement:", "Right");
+            } else {
+                telemetry.addData("Block Placement:", "Forward");
+            }
+             */
+        }
     }
 }
