@@ -343,7 +343,7 @@ public class GavinoAuto extends LinearOpMode {
         }*/
 
         DRIVE_DISTANCE_FORWARD(22f, 0.8);
-        DRIVE_DISTANCE_RIGHT(96f);
+        DRIVE_DISTANCE_RIGHT(72f);
         DRIVE_DISTANCE_FORWARD(-24f, 0.8);
         TURN(1, 30f);
         DRIVE_DISTANCE_FORWARD(8f,1);
