@@ -1,4 +1,3 @@
-/**
 package org.firstinspires.ftc.teamcode;
 
 
@@ -47,8 +46,8 @@ public class AutoDistance extends Autonomous{
         waitForStart();
         while(opModeIsActive()) {
 
+
         }
 
     }
 }
-**/

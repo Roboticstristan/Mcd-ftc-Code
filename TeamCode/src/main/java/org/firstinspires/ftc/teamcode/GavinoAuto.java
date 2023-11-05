@@ -332,15 +332,32 @@ public class GavinoAuto extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(100f, 0.5);
-            /*if (duncan.SIX_EYES() == 1) {
+            DRIVE_DISTANCE_FORWARD(30f, 0.8);
+         /*   if (duncan.SIX_EYES() == 1) {
                 telemetry.addData("Block Placement:", "Left");
+                //turn left 90
+                // Place pixel
+                // turn right 90
             } else if (duncan.SIX_EYES() == 2) {
                 telemetry.addData("Block Placement:", "Right");
+                //turn right 90
+                //place pixel
+                //turn left 90
             } else {
                 telemetry.addData("Block Placement:", "Forward");
+                //drive forward
+                //place pixel
             }
-             */
         }
+
+        DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+        TURN(1, 30f);
+        DRIVE_DISTANCE_FORWARD(12f, 0.8);
+        DRIVE_DISTANCE_RIGHT(30f, 0.8);
+        TURN(1, 30f);
+*/
+
+        );
+
     }
 }

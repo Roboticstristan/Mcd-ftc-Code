@@ -63,6 +63,7 @@ public class DuncanAuto extends LinearOpMode {
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
             duncan.DRIVE_DISTANCE_FORWARD(100f, 0.5);
+
             /*if (duncan.SIX_EYES() == 1) {
                 telemetry.addData("Block Placement:", "Left");
             } else if (duncan.SIX_EYES() == 2) {
