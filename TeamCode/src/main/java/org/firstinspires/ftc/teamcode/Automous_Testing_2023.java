@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-//h
+
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -21,7 +21,7 @@ public class Autonomous_Testing_First extends LinearOpMode {
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
-    //private DcMotor linearSlide = null;
+    private DcMotor linearSlide = null;
     //declare color sensor
 //    public Servo claw = null;
     public void setDirectionForward() {
@@ -194,9 +194,9 @@ public class Autonomous_Testing_First extends LinearOpMode {
 
         telemetry.addData("motors","> Are running to position");
         telemetry.update();
-        /*while(frontLeft.isBusy()){
+        while(frontLeft.isBusy()){
             //Wait until job is finished
-        }*/
+        }
 
         STOP_AND_RESET_ENCODERS_ALL_WHEELS();
 
@@ -343,6 +343,8 @@ public class Autonomous_Testing_First extends LinearOpMode {
             sleep(500);
 
 
+
+
             /*
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
@@ -351,7 +353,8 @@ public class Autonomous_Testing_First extends LinearOpMode {
             telemetry.update();
             */
             //
-            //
+
+
         }
     }
 }

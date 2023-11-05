@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.NormalizedRGBA;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,6 +13,8 @@ import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class AutoMethods extends LinearOpMode {
     // Declare OpMode members.
@@ -25,12 +28,25 @@ public class AutoMethods extends LinearOpMode {
     private NormalizedColorSensor colorSensor = null;
     //private DcMotor colorSensor = null;
     public Servo claw = null;
+    private DistanceSensor sensorRange1;
+    private DistanceSensor sensorRange2;
 
-    public AutoMethods(DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR){
+    public AutoMethods(DcMotor fL, DcMotor fR, DcMotor bL, DcMotor bR, DistanceSensor ds1, DistanceSensor ds2){
         frontLeft = fL;
         frontRight = fR;
         backLeft = bL;
         backRight = bR;
+        sensorRange1 = ds1;
+        sensorRange2 = ds2;
+    }
+
+    public AutoMethods(DistanceSensor ds1, DistanceSensor ds2){
+        sensorRange1 = ds1;
+        sensorRange2 = ds2;
+        frontLeft = null;
+        frontRight = null;
+        backLeft = null;
+        backRight = null;
     }
 
     public void setDirectionForward() {
@@ -286,6 +302,17 @@ public class AutoMethods extends LinearOpMode {
             telemetry.update();
         }
     }
+
+    public int SIX_EYES() {
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            return 1; //left
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            return 2; //right
+        } else {
+            return 3; //forward
+        }
+    }
+
 
     @Override
     public void runOpMode() throws InterruptedException {
