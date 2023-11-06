@@ -282,10 +282,41 @@ public class GavinoAuto extends LinearOpMode
     }
      */
 
-    public void getData() {
-        sensorRange1.getDistance(DistanceUnit.CM);
-        sensorRange2.getDistance(DistanceUnit.CM);
+  //  public void getData() {
+   //     sensorRange1.getDistance(DistanceUnit.CM);
+      //  sensorRange2.getDistance(DistanceUnit.CM);
+  //  }
+/*
+    public int SIX_EYES() {
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            return 1; //left
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            return 2; //right
+        } else {
+            return 3; //forward
+        }
     }
+
+
+ */
+      /*   if (duncan.SIX_EYES() == 1) {
+                telemetry.addData("Block Placement:", "Left");
+                //turn left 90
+                // Place pixel
+                // turn right 90
+            } else if (duncan.SIX_EYES() == 2) {
+                telemetry.addData("Block Placement:", "Right");
+                //turn right 90
+                //place pixel
+                //turn left 90
+            } else {
+                telemetry.addData("Block Placement:", "Forward");
+                //drive forward
+                //place pixel
+            }
+        }*/
+
+
 
     public void useData() {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
@@ -334,7 +365,7 @@ public class GavinoAuto extends LinearOpMode
 
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1000);
-            getData();
+            //getData();
             useData();
         }
 
