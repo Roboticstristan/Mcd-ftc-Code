@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name="El_Salvador", group="Auto2022")
-public class GavinoAuto extends LinearOpMode {
+public class GavinoAuto extends LinearOpMode
+{
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
@@ -281,16 +282,20 @@ public class GavinoAuto extends LinearOpMode {
     }
      */
 
-    public int SIX_EYES() {
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            return 1; //left
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            return 2; //right
-        } else {
-            return 3; //forward
-        }
+    public void getData() {
+        sensorRange1.getDistance(DistanceUnit.CM);
+        sensorRange2.getDistance(DistanceUnit.CM);
     }
 
+    public void useData() {
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            DRIVE_DISTANCE_LEFT(10f);
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+           DRIVE_DISTANCE_RIGHT(10f);
+        } else {
+            DRIVE_DISTANCE_FORWARD(10f,0.8);
+        }
+    }
 
     @Override
     public void runOpMode() {
@@ -304,12 +309,14 @@ public class GavinoAuto extends LinearOpMode {
         frontLeft = hardwareMap.get(DcMotor.class, "leftFront_Drive");
         backRight = hardwareMap.get(DcMotor.class, "rightBack_Drive");
         backLeft = hardwareMap.get(DcMotor.class, "leftBack_Drive");
-        //sensorRange1 = hardwareMap.get(DistanceSensor.class, "Distance1");
-        //sensorRange2 = hardwareMap.get(DistanceSensor.class, "Distance2");
+        sensorRange1 = hardwareMap.get(DistanceSensor.class, "left_Distance");
+        sensorRange2 = hardwareMap.get(DistanceSensor.class, "right_Distance");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
         //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
         //claw = hardwareMap.get(Servo.class, "claw");
-        //AutoMethods duncan = new AutoMethods(sensorRange1, sensorRange2);
+
+
+
 
         /*if (colorSensor instanceof SwitchableLight) {
             ((SwitchableLight)colorSensor).enableLight(true);
@@ -321,38 +328,26 @@ public class GavinoAuto extends LinearOpMode {
         waitForStart();
         runtime.reset();
 
+
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
+
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1000);
-         /*   if (duncan.SIX_EYES() == 1) {
-                telemetry.addData("Block Placement:", "Left");
-                //turn left 90
-                // Place pixel
-                // turn right 90
-            } else if (duncan.SIX_EYES() == 2) {
-                telemetry.addData("Block Placement:", "Right");
-                //turn right 90
-                //place pixel
-                //turn left 90
-            } else {
-                telemetry.addData("Block Placement:", "Forward");
-                //drive forward
-                //place pixel
-            }
-        }*/
+            getData();
+            useData();
+        }
 
-        DRIVE_DISTANCE_FORWARD(22f, 0.8);
-        DRIVE_DISTANCE_RIGHT(72f);
-        DRIVE_DISTANCE_FORWARD(-24f, 0.8);
-        TURN(1, 30f);
-        DRIVE_DISTANCE_FORWARD(8f,1);
+       // DRIVE_DISTANCE_RIGHT(72f);
+        //DRIVE_DISTANCE_FORWARD(-24f, 0.8);
+        //TURN(1, 30f);
+      //  DRIVE_DISTANCE_FORWARD(8f,1);
 
       //  TURN(12,1);
        // DRIVE_DISTANCE_RIGHT();
 
 
 
-        }
     }
 }
+
