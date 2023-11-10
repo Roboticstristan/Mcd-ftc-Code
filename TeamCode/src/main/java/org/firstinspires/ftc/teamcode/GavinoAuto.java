@@ -27,10 +27,10 @@ public class GavinoAuto extends LinearOpMode
     //public Servo claw = null;
 
     public void setDirectionForward() {
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.FORWARD);
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void setDirectionBackward() {
@@ -117,13 +117,13 @@ public class GavinoAuto extends LinearOpMode
 
         if (power > 0) {
             backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+            frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             backRight.setDirection(DcMotorSimple.Direction.FORWARD);
         } else {
             backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
             backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
@@ -290,10 +290,17 @@ public class GavinoAuto extends LinearOpMode
     public void SIX_EYES() {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
+            TURN(1,90f);
+            TURN(1,-90f);
+            //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
+            TURN(1,90f);
+            TURN(1,-90f);
+            //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
+            DRIVE_DISTANCE_FORWARD(-10f,0.8);
         }
     }
 
@@ -317,16 +324,6 @@ public class GavinoAuto extends LinearOpMode
         }*/
 
 
-
-    public void useData() {
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            DRIVE_DISTANCE_LEFT(10f);
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-           DRIVE_DISTANCE_RIGHT(10f);
-        } else {
-            DRIVE_DISTANCE_FORWARD(10f,0.8);
-        }
-    }
 
     @Override
     public void runOpMode() {
@@ -362,19 +359,25 @@ public class GavinoAuto extends LinearOpMode
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            SIX_EYES();
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(1000);
-
+            TURN(1,90f);
         }
+            /*
+            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            sleep(1873);
+            SIX_EYES();
+        }
+        sleep(2000);
 
-       // DRIVE_DISTANCE_RIGHT(72f);
-        //DRIVE_DISTANCE_FORWARD(-24f, 0.8);
-        //TURN(1, 30f);
-      //  DRIVE_DISTANCE_FORWARD(8f,1);
+        DRIVE_DISTANCE_FORWARD(18f, 0.8);
+        DRIVE_DISTANCE_RIGHT(72f);
+        DRIVE_DISTANCE_FORWARD(24f, 0.8);
+        TURN(1, -30f);
+        DRIVE_DISTANCE_FORWARD(8f,1);
 
       //  TURN(12,1);
        // DRIVE_DISTANCE_RIGHT();
+*/
+
 
 
 
