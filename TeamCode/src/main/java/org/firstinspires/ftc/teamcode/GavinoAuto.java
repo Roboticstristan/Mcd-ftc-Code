@@ -286,19 +286,19 @@ public class GavinoAuto extends LinearOpMode
    //     sensorRange1.getDistance(DistanceUnit.CM);
       //  sensorRange2.getDistance(DistanceUnit.CM);
   //  }
-/*
-    public int SIX_EYES() {
+
+    public void SIX_EYES() {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            return 1; //left
+            telemetry.addData("Block Placement:", "Left");
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            return 2; //right
+            telemetry.addData("Block Placement:", "Right");
         } else {
-            return 3; //forward
+            telemetry.addData("Block Placement:", "Forward");
         }
     }
 
 
- */
+
       /*   if (duncan.SIX_EYES() == 1) {
                 telemetry.addData("Block Placement:", "Left");
                 //turn left 90
@@ -362,11 +362,10 @@ public class GavinoAuto extends LinearOpMode
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-
+            SIX_EYES();
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1000);
-            //getData();
-            useData();
+
         }
 
        // DRIVE_DISTANCE_RIGHT(72f);
