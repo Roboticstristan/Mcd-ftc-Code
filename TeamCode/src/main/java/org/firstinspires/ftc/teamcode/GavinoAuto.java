@@ -290,10 +290,13 @@ public class GavinoAuto extends LinearOpMode
     public void SIX_EYES() {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
+            DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
+            DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
+            DRIVE_DISTANCE_FORWARD(10f,0.8);
         }
     }
 
@@ -362,10 +365,9 @@ public class GavinoAuto extends LinearOpMode
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            SIX_EYES();
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1000);
-
+            SIX_EYES();
         }
 
        // DRIVE_DISTANCE_RIGHT(72f);
