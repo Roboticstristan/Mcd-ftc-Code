@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name="El_Salvador", group="Auto2022")
-public class GavinoAuto extends LinearOpMode
-{
+public class GavinoAuto extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
@@ -110,6 +109,7 @@ public class GavinoAuto extends LinearOpMode
     }
 
     void TURN(int power, float distance_in_in) {
+        //turn positive is left - turn negative is right
         float ticksPerInch = 59.6031746032f;
         float f_ticks = ticksPerInch * distance_in_in;
         int ticks = Math.round(f_ticks);
@@ -282,25 +282,28 @@ public class GavinoAuto extends LinearOpMode
     }
      */
 
-  //  public void getData() {
-   //     sensorRange1.getDistance(DistanceUnit.CM);
-      //  sensorRange2.getDistance(DistanceUnit.CM);
-  //  }
+    //  public void getData() {
+    //     sensorRange1.getDistance(DistanceUnit.CM);
+    //  sensorRange2.getDistance(DistanceUnit.CM);
+    //  }
 
     public void SIX_EYES() {
+        //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
-            TURN(1,90f);
-            TURN(1,-90f);
+            TURN(1, 20f);
+            sleep(1000);
+            TURN(1, -20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
-            TURN(1,90f);
-            TURN(1,-90f);
+            TURN(1, 20f);
+            sleep(1000);
+            TURN(1, -20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
-            DRIVE_DISTANCE_FORWARD(-10f,0.8);
+            DRIVE_DISTANCE_FORWARD(-10f, 0.8);
         }
     }
 
@@ -322,7 +325,6 @@ public class GavinoAuto extends LinearOpMode
                 //place pixel
             }
         }*/
-
 
 
     @Override
@@ -359,9 +361,10 @@ public class GavinoAuto extends LinearOpMode
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            TURN(1,90f);
-        }
-            /*
+            // TURN(1, 90f);
+            TURN(1, -20f);
+/*
+
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1873);
             SIX_EYES();
@@ -372,15 +375,14 @@ public class GavinoAuto extends LinearOpMode
         DRIVE_DISTANCE_RIGHT(72f);
         DRIVE_DISTANCE_FORWARD(24f, 0.8);
         TURN(1, -30f);
-        DRIVE_DISTANCE_FORWARD(8f,1);
+        DRIVE_DISTANCE_FORWARD(8f, 1);
 
-      //  TURN(12,1);
-       // DRIVE_DISTANCE_RIGHT();
-*/
-
-
+        //  TURN(12,1);
+        // DRIVE_DISTANCE_RIGHT();*/
+        }
 
 
     }
 }
+
 
