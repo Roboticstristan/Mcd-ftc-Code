@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/*public class thomasTesting {
-    @TeleOp(name="intakeTest", group="Linear Opmode")
+public class thomasTesting {
+    @TeleOp(name="intakeThomas", group="Linear Opmode")
     public class Intake extends LinearOpMode {
         private DcMotor motor1 = null;
         private ElapsedTime runtime = new ElapsedTime();
@@ -35,4 +35,4 @@ import com.qualcomm.robotcore.util.ElapsedTime;
         }
     }
 
- */
+

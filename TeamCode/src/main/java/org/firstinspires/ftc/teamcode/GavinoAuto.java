@@ -109,7 +109,7 @@ public class GavinoAuto extends LinearOpMode {
     }
 
     void TURN(int power, float distance_in_in) {
-        //turn positive is left - turn negative is right
+        //turn positive power is left - turn negative power is right
         float ticksPerInch = 59.6031746032f;
         float f_ticks = ticksPerInch * distance_in_in;
         int ticks = Math.round(f_ticks);
@@ -293,16 +293,21 @@ public class GavinoAuto extends LinearOpMode {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
             sleep(1000);
-            TURN(1, -20f);
+            DRIVE_DISTANCE_RIGHT(24f);
+            sleep(500);
+        //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
-            TURN(1, 20f);
+            TURN(-1, 20f);
             sleep(1000);
-            TURN(1, -20f);
+            DRIVE_DISTANCE_LEFT(24f);
+            sleep(500);
+           // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
+            TURN(-1, 40f);
             DRIVE_DISTANCE_FORWARD(-10f, 0.8);
         }
     }
@@ -362,8 +367,6 @@ public class GavinoAuto extends LinearOpMode {
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
             // TURN(1, 90f);
-            TURN(1, -20f);
-/*
 
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(1873);
@@ -371,18 +374,18 @@ public class GavinoAuto extends LinearOpMode {
         }
         sleep(2000);
 
-        DRIVE_DISTANCE_FORWARD(18f, 0.8);
-        DRIVE_DISTANCE_RIGHT(72f);
-        DRIVE_DISTANCE_FORWARD(24f, 0.8);
-        TURN(1, -30f);
-        DRIVE_DISTANCE_FORWARD(8f, 1);
+
+        DRIVE_DISTANCE_FORWARD(55f, 0.5);
+        DRIVE_DISTANCE_RIGHT(12f);
+
+        DRIVE_DISTANCE_FORWARD(5f, 1);
 
         //  TURN(12,1);
-        // DRIVE_DISTANCE_RIGHT();*/
+        // DRIVE_DISTANCE_RIGHT();
         }
 
 
     }
-}
+
 
 
