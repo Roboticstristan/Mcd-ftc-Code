@@ -17,25 +17,24 @@ public class linslide extends LinearOpMode {
             runtime.reset();
             while (opModeIsActive()){
                 if(gamepad1.left_trigger > 0)
-            {
-                linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-                linearSlide1.setDirection(DcMotorSimple.Direction.FORWARD);
-                linearSlide.setPower(0.6);
-                linearSlide1.setPower(0.6);
-            }else if(gamepad1.right_trigger > 0)
                 {
-                linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-                linearSlide1.setDirection(DcMotorSimple.Direction.REVERSE);
-                linearSlide.setPower(0.9);
-                linearSlide1.setPower(0.9);
-            } else {
-                    {
-                        linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-                        linearSlide1.setDirection(DcMotorSimple.Direction.FORWARD);
-                        linearSlide.setPower(0.09);
-                        linearSlide1.setPower(0.09);
+                    linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                    linearSlide1.setDirection(DcMotorSimple.Direction.FORWARD);
+                    linearSlide.setPower(0.6);
+                    linearSlide1.setPower(0.6);
+                }else if(gamepad1.right_trigger > 0)
+                {
+                    linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                    linearSlide1.setDirection(DcMotorSimple.Direction.REVERSE);
+                    linearSlide.setPower(0.9);
+                    linearSlide1.setPower(0.9);
+                } else {
+                    linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                    linearSlide1.setDirection(DcMotorSimple.Direction.FORWARD);
+                    linearSlide.setPower(0.09);
+                    linearSlide1.setPower(0.09);
                     }
                 }
             }
         }
-    }
+

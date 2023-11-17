@@ -43,6 +43,8 @@ public class MarioKart extends LinearOpMode {
         frontRight = hardwareMap.get(DcMotor.class, "front_right");
         llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
         rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
+        claw = hardwareMap.get(Servo.class, "claw");
+        arm = hardwareMap.get(Servo.class, "arm");
 
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.REVERSE);
@@ -105,7 +107,24 @@ public class MarioKart extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.update();
 
-
+            if(gamepad1.left_trigger > 0)
+            {
+                llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                llSlide.setPower(0.6);
+                rlSlide.setPower(0.6);
+            }else if(gamepad1.right_trigger > 0)
+            {
+                llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                rlSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                llSlide.setPower(0.9);
+                rlSlide.setPower(0.9);
+            } else {
+                llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                llSlide.setPower(0.09);
+                rlSlide.setPower(0.09);
+            }
 //Tristan is smelly
         }
 
