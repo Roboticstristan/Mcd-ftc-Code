@@ -27,10 +27,14 @@ public class nuclearFission extends LinearOpMode {
                 .addProcessor(tagProcessor)
                 .setCamera(hardwareMap.get(WebcamName.class, "sixEyes"))
                 .setCameraResolution(new Size(640, 480))
+                .setAutoStopLiveView(true)
+                .setStreamFormat(VisionPortal.StreamFormat.MJPEG)
                 .build();
         waitForStart();
 
         while (!isStopRequested() && opModeIsActive()){
+            malevolentShrine.getCameraState();
+            malevolentShrine.getFps();
             if (tagProcessor.getDetections().size() > 0){
                 AprilTagDetection tagYoureIt = tagProcessor.getDetections().get(0);
 
