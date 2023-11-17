@@ -384,6 +384,7 @@ public class GavinoAuto extends LinearOpMode {
         // DRIVE_DISTANCE_RIGHT();
         }
 
+//Tristan is smelly
     }
 
 

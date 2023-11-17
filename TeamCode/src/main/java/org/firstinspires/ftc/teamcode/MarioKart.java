@@ -106,7 +106,7 @@ public class MarioKart extends LinearOpMode {
             telemetry.update();
 
 
-
+//Tristan is smelly
         }
 
     }
