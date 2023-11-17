@@ -10,8 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name="El_Salvador", group="Auto2022")
-public class GavinoAuto extends LinearOpMode
-{
+public class GavinoAuto extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
@@ -27,10 +26,10 @@ public class GavinoAuto extends LinearOpMode
     //public Servo claw = null;
 
     public void setDirectionForward() {
-        backLeft.setDirection(DcMotor.Direction.REVERSE);
-        backRight.setDirection(DcMotor.Direction.FORWARD);
-        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void setDirectionBackward() {
@@ -110,6 +109,7 @@ public class GavinoAuto extends LinearOpMode
     }
 
     void TURN(int power, float distance_in_in) {
+        //turn positive power is left - turn negative power is right
         float ticksPerInch = 59.6031746032f;
         float f_ticks = ticksPerInch * distance_in_in;
         int ticks = Math.round(f_ticks);
@@ -117,13 +117,13 @@ public class GavinoAuto extends LinearOpMode
 
         if (power > 0) {
             backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
-            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
+            frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
             backRight.setDirection(DcMotorSimple.Direction.FORWARD);
         } else {
             backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
-            frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+            frontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+            frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
             backRight.setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
@@ -282,18 +282,45 @@ public class GavinoAuto extends LinearOpMode
     }
      */
 
-  //  public void getData() {
-   //     sensorRange1.getDistance(DistanceUnit.CM);
-      //  sensorRange2.getDistance(DistanceUnit.CM);
-  //  }
+    //  public void getData() {
+    //     sensorRange1.getDistance(DistanceUnit.CM);
+    //  sensorRange2.getDistance(DistanceUnit.CM);
+    //  }
 
     public void SIX_EYES() {
+        int position;
+        //if we are not using the april tags the position variable can help to see which one we need to place at
+        //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
+            TURN(1, 20f);
+            sleep(1000);
+            DRIVE_DISTANCE_RIGHT(13f);
+            sleep(500);
+            TURN(1,2);
+            //the turn attempts to fix the drifting problem when the robot strafes
+            position = 1;
+        //    TURN(-1, 20f);
+            //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+           // just to clarify this means the robot's right I think - need to check
             telemetry.addData("Block Placement:", "Right");
+            TURN(-1, 20f);
+            sleep(1000);
+            DRIVE_DISTANCE_LEFT(13f);
+            sleep(500);
+            TURN(1, 40f);
+            position = 3;
+            // TURN(1, 20f);
+            //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
+            TURN(-1, 40f);
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(25f, -0.8);
+            sleep(500);
+            TURN(-1, 20f);
+            position = 2;
         }
     }
 
@@ -316,17 +343,6 @@ public class GavinoAuto extends LinearOpMode
             }
         }*/
 
-
-
-    public void useData() {
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            DRIVE_DISTANCE_LEFT(10f);
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-           DRIVE_DISTANCE_RIGHT(10f);
-        } else {
-            DRIVE_DISTANCE_FORWARD(10f,0.8);
-        }
-    }
 
     @Override
     public void runOpMode() {
@@ -362,22 +378,26 @@ public class GavinoAuto extends LinearOpMode
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            SIX_EYES();
+            // TURN(1, 90f);
+
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(1000);
-
+            sleep(1873);
+            SIX_EYES();
         }
+        sleep(2000);
 
-       // DRIVE_DISTANCE_RIGHT(72f);
-        //DRIVE_DISTANCE_FORWARD(-24f, 0.8);
-        //TURN(1, 30f);
-      //  DRIVE_DISTANCE_FORWARD(8f,1);
 
-      //  TURN(12,1);
-       // DRIVE_DISTANCE_RIGHT();
+        DRIVE_DISTANCE_FORWARD(70f, -1);
+        DRIVE_DISTANCE_LEFT(14.1f);
 
+        DRIVE_DISTANCE_FORWARD(5f, 1);
+
+        //  TURN(12,1);
+        // DRIVE_DISTANCE_RIGHT();
+        }
 
 
     }
-}
+
+
 
