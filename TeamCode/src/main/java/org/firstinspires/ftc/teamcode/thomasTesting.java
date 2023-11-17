@@ -4,35 +4,30 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 public class thomasTesting {
-    @TeleOp(name="servoThomas", group="Linear Opmode")
-    public class servo extends LinearOpMode {
-        private Servo servo1 = null;
+    @TeleOp(name="intakeThomas", group="Linear Opmode")
+    public class intakeThomas extends LinearOpMode {
+        private DcMotor motor1 = null;
         private ElapsedTime runtime = new ElapsedTime();
 
         @Override
         public void runOpMode() {
             int daCount = 0;
-            double maxPos = 0.5;
-            double minPos = -0.5;
             waitForStart();
             runtime.reset();
             while(opModeIsActive()){
-                servo1 = hardwareMap.get(Servo.class, "motorTest");
+                motor1 = hardwareMap.get(DcMotor.class, "motorTest");
                 if(gamepad1.a){
                     daCount++;
                 }
                 if(daCount % 2 != 0){
-                    servo1.setDirection(Servo.Direction.REVERSE);
-                    servo1.setPosition(Servo.MAX_POSITION);
-                    sleep(1000);
-                    servo1.setPosition(Servo.MIN_POSITION);
+                    motor1.setDirection(DcMotorSimple.Direction.REVERSE);
+                    motor1.setPower(1);
                 }
                 else {
-                    servo1.setPosition(0);
+                    motor1.setPower(0);
                 }
             }
         }

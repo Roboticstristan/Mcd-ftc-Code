@@ -23,7 +23,7 @@ public class Intake extends LinearOpMode {
             count++;
             if (count % 2 != 0) {
                 motor1.setDirection(DcMotorSimple.Direction.REVERSE);
-                motor1.setPower(5);
+                motor1.setPower(1);
                 //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                 //motor2.setPower(1);
             } else {

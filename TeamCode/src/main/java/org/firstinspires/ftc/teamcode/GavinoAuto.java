@@ -288,39 +288,27 @@ public class GavinoAuto extends LinearOpMode {
     //  }
 
     public void SIX_EYES() {
-        int position;
-        //if we are not using the april tags the position variable can help to see which one we need to place at
         //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(13f);
+            DRIVE_DISTANCE_RIGHT(24f);
             sleep(500);
-            TURN(1,2);
-            //the turn attempts to fix the drifting problem when the robot strafes
-            position = 1;
         //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-           // just to clarify this means the robot's right I think - need to check
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_LEFT(13f);
+            DRIVE_DISTANCE_LEFT(24f);
             sleep(500);
-            TURN(1, 40f);
-            position = 3;
-            // TURN(1, 20f);
+           // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
-            sleep(500);
-            DRIVE_DISTANCE_FORWARD(25f, -0.8);
-            sleep(500);
-            TURN(-1, 20f);
-            position = 2;
+            DRIVE_DISTANCE_FORWARD(-10f, 0.8);
         }
     }
 
@@ -387,8 +375,8 @@ public class GavinoAuto extends LinearOpMode {
         sleep(2000);
 
 
-        DRIVE_DISTANCE_FORWARD(70f, -1);
-        DRIVE_DISTANCE_LEFT(14.1f);
+        DRIVE_DISTANCE_FORWARD(55f, 0.5);
+        DRIVE_DISTANCE_RIGHT(12f);
 
         DRIVE_DISTANCE_FORWARD(5f, 1);
 
