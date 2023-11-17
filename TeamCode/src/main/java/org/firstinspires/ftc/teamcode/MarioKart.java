@@ -41,6 +41,9 @@ public class MarioKart extends LinearOpMode {
         backRight = hardwareMap.get(DcMotor.class, " back_right");
         frontLeft  = hardwareMap.get(DcMotor.class, "front_left");
         frontRight = hardwareMap.get(DcMotor.class, "front_right");
+        llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
+        rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
+
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         backRight.setDirection(DcMotor.Direction.REVERSE);
         frontLeft.setDirection(DcMotor.Direction.FORWARD);
