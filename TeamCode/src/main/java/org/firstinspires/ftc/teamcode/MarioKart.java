@@ -28,6 +28,7 @@ public class MarioKart extends LinearOpMode {
     static final double MIN_POS = 0;
 
     double position = (MAX_POS - MIN_POS) / 2;
+    private int count;
 
 
     //variable that holds the amount of time is running
@@ -37,12 +38,13 @@ public class MarioKart extends LinearOpMode {
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
-        backLeft  = hardwareMap.get(DcMotor.class, "back_left");
-        backRight = hardwareMap.get(DcMotor.class, " back_right");
-        frontLeft  = hardwareMap.get(DcMotor.class, "front_left");
-        frontRight = hardwareMap.get(DcMotor.class, "front_right");
+        frontRight = hardwareMap.get(DcMotor.class, "rightFront_Drive");
+        frontLeft = hardwareMap.get(DcMotor.class, "leftFront_Drive");
+        backRight = hardwareMap.get(DcMotor.class, "rightBack_Drive");
+        backLeft = hardwareMap.get(DcMotor.class, "leftBack_Drive");
         llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
         rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
+        intake = hardwareMap.get(DcMotor.class, "intake");
         claw = hardwareMap.get(Servo.class, "claw");
         arm = hardwareMap.get(Servo.class, "arm");
 
@@ -125,6 +127,20 @@ public class MarioKart extends LinearOpMode {
                 llSlide.setPower(0.09);
                 rlSlide.setPower(0.09);
             }
+
+            if(gamepad1.x){
+                count++;
+                if (count % 2 != 0) {
+                    intake.setDirection(DcMotorSimple.Direction.FORWARD);
+                    intake.setPower(1);
+                    //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
+                    //motor2.setPower(1);
+                } else {
+                    intake.setPower(0);
+                    //motor2.setPower(0);
+                }
+            }
+
 //Tristan is smelly
         }
 
