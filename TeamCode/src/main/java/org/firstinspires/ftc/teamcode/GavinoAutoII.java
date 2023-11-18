@@ -308,7 +308,7 @@ public class GavinoAutoII extends LinearOpMode {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            DRIVE_DISTANCE_FORWARD(-50f, 0.8);
             sleep(500);
             TURN(1, 20f);
         }
@@ -357,7 +357,7 @@ public class GavinoAutoII extends LinearOpMode {
         }
         sleep(2000);
         DRIVE_DISTANCE_FORWARD(26f,0.8);
-        DRIVE_DISTANCE_RIGHT(40f);
+        DRIVE_DISTANCE_RIGHT(46f);
         DRIVE_DISTANCE_FORWARD(20f,0.8);
         }
 
