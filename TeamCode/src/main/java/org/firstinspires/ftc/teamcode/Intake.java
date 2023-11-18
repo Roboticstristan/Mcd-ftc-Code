@@ -28,7 +28,7 @@ public class Intake extends LinearOpMode {
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
                 } else {
-                    motor1.setPower(-1);
+                    motor1.setPower(-0.5);
                 }
             }
             if(gamepad1.a){
