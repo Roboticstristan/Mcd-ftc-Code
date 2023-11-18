@@ -19,16 +19,20 @@ public class Intake extends LinearOpMode {
         runtime.reset();
         while (opModeIsActive()) {
             motor1 = hardwareMap.get(DcMotor.class, "mouthI");
+            motor1.setDirection(DcMotorSimple.Direction.FORWARD);
              //motor2 = hardwareMap.get(DcMotor.class, "bodyI");
-            count++;
-            if (count % 2 != 0) {
-                motor1.setDirection(DcMotorSimple.Direction.FORWARD);
-                motor1.setPower(1);
-                //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
-                //motor2.setPower(1);
-            } else {
+            if(gamepad1.x){
+                count++;
+                if (count % 2 != 0) {
+                    motor1.setPower(1);
+                } else {
+                    motor1.setPower(-1);
+                }
+            }
+
+            if(gamepad1.y){
                 motor1.setPower(0);
-                //motor2.setPower(0);
+                count = 0;
             }
         }
 
