@@ -9,8 +9,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name="El_Salvador", group="Auto2022")
-public class GavinoAuto extends LinearOpMode {
+@Autonomous(name="El_SalvadorB", group="Auto2022")
+public class GavinoAutoBlue extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
@@ -167,7 +167,7 @@ public class GavinoAuto extends LinearOpMode {
 
     public void DRIVE_DISTANCE_RIGHT(float distance_in_in) {
         float ticksPerInch = 120.737061895f;
-        float f_ticks = ticksPerInch * distance_in_in;
+        float f_ticks = ((ticksPerInch * distance_in_in)/1.7f);
         int ticks = Math.round(f_ticks);
         // 1120 Ticks per revolution
 
@@ -211,7 +211,7 @@ public class GavinoAuto extends LinearOpMode {
 
     public void DRIVE_DISTANCE_LEFT(float distance_in_in) {
         float ticksPerInch = 120.737061895f;
-        float f_ticks = ticksPerInch * distance_in_in;
+        float f_ticks = ((ticksPerInch * distance_in_in)/1.7f);
         int ticks = Math.round(f_ticks);
         // 1120 Ticks per revolution
 
@@ -375,8 +375,8 @@ public class GavinoAuto extends LinearOpMode {
         sleep(2000);
 
 
-        DRIVE_DISTANCE_FORWARD(55f, 0.5);
-        DRIVE_DISTANCE_RIGHT(12f);
+        DRIVE_DISTANCE_FORWARD(50f, 0.5);
+        DRIVE_DISTANCE_RIGHT(20.4f);
 
         DRIVE_DISTANCE_FORWARD(5f, 1);
 
