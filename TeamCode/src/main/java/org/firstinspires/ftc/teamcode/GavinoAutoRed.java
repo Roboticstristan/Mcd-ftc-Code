@@ -291,10 +291,11 @@ public class GavinoAutoRed extends LinearOpMode {
         //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
-            TURN(-1, 20f);
+            TURN(1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(24f);
+            DRIVE_DISTANCE_RIGHT(5f);
             sleep(500);
+
 
             //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
