@@ -295,6 +295,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             sleep(1000);
             DRIVE_DISTANCE_RIGHT(24f);
             sleep(500);
+            TURN(1, 40f);
         //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
@@ -308,7 +309,8 @@ public class GavinoAutoBlue extends LinearOpMode {
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
-            DRIVE_DISTANCE_FORWARD(-10f, 0.8);
+            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            TURN(-1, 20f);
         }
     }
 
