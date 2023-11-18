@@ -290,27 +290,30 @@ public class GavinoAutoII extends LinearOpMode {
     public void SIX_EYES() {
         //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            telemetry.addData("Block Placement:", "Left");
+
+            telemetry.addData("Block Placement:", "Right");
             TURN(1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(16f);
-            sleep(500);
-            TURN(-1, 40f);
-            DRIVE_DISTANCE_FORWARD(26f,0.8);
-            DRIVE_DISTANCE_RIGHT(34);
-            DRIVE_DISTANCE_FORWARD(20f,0.8);
+            TURN(1,40f);
+            circumnavigate();
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            telemetry.addData("Block Placement:", "Right");
+            telemetry.addData("Block Placement:", "Left");
             TURN(-1, 20f);
             sleep(1000);
-            TURN(1, 40);
-            sleep(1000);
-            circumnavigate();
+            DRIVE_DISTANCE_RIGHT(24f);
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(40f,1);
+            sleep(500);
+            DRIVE_DISTANCE_LEFT(24f);
+            sleep(500);
+            DRIVE_DISTANCE_RIGHT(24f);
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(5f,1);
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
             sleep(1000);
-            TURN(-1, 20);
+            TURN(1, 20);
             sleep(1000);
             circumnavigate();
         }
@@ -318,8 +321,11 @@ public class GavinoAutoII extends LinearOpMode {
 
     public void circumnavigate(){
         DRIVE_DISTANCE_FORWARD(26f,0.8);
-        DRIVE_DISTANCE_RIGHT(18f);
+        sleep(500);
+        DRIVE_DISTANCE_RIGHT(28f);
+        sleep(500);
         DRIVE_DISTANCE_FORWARD(20f,0.8);
+        sleep(500);
     }
 
     @Override
