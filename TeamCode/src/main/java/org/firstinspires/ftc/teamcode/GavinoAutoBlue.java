@@ -310,7 +310,9 @@ public class GavinoAutoBlue extends LinearOpMode {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            TURN(-1, 20f);
+            TURN(1, 20f);
+            DRIVE_DISTANCE_LEFT(24f);
+            sleep(500);
         }
     }
 
@@ -386,7 +388,6 @@ public class GavinoAutoBlue extends LinearOpMode {
         // DRIVE_DISTANCE_RIGHT();
         }
 
-//Tristan is smelly
     }
 
 

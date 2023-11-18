@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name="El_SalvadorR", group="Auto2022")
 public class GavinoAutoRed extends LinearOpMode {
+    // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
     private DcMotor frontLeft = null;
@@ -290,24 +291,31 @@ public class GavinoAutoRed extends LinearOpMode {
         //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
-            TURN(-1, 20f);
+            TURN(1, 20f);
             sleep(1000);
             DRIVE_DISTANCE_RIGHT(24f);
             sleep(500);
+
             //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
-            TURN(1, 20f);
+            TURN(-1, 20f);
             sleep(1000);
             DRIVE_DISTANCE_LEFT(24f);
             sleep(500);
+            TURN(1, 40f);
             // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
-            TURN(-1, 40f);
-            DRIVE_DISTANCE_FORWARD(-10f, 0.8);
+            TURN(1, 40f);
+            sleep(200);
+            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            sleep(400);
+            TURN(-1, 20f);
+            DRIVE_DISTANCE_RIGHT(24f);
+            sleep(500);
         }
     }
 
@@ -374,7 +382,7 @@ public class GavinoAutoRed extends LinearOpMode {
         sleep(2000);
 
 
-        DRIVE_DISTANCE_FORWARD(55f, 0.5);
+        DRIVE_DISTANCE_FORWARD(50f, 0.5);
         DRIVE_DISTANCE_LEFT(20.4f);
 
         DRIVE_DISTANCE_FORWARD(5f, 1);
@@ -382,4 +390,9 @@ public class GavinoAutoRed extends LinearOpMode {
         //  TURN(12,1);
         // DRIVE_DISTANCE_RIGHT();
     }
+
+//Tristan is smelly
 }
+
+
+
