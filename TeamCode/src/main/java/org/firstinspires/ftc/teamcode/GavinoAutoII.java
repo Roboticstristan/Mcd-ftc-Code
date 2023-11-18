@@ -357,7 +357,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(2000);
         }
 
-//Tristan is smelly + 1
+//Tristan is smelly
     }
 
 
