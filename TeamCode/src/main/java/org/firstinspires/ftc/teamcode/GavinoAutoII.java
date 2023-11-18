@@ -167,7 +167,7 @@ public class GavinoAutoII extends LinearOpMode {
 
     public void DRIVE_DISTANCE_RIGHT(float distance_in_in) {
         float ticksPerInch = 120.737061895f;
-        float f_ticks = ticksPerInch * distance_in_in;
+        float f_ticks = ((ticksPerInch * distance_in_in)/1.7f);
         int ticks = Math.round(f_ticks);
         // 1120 Ticks per revolution
 
@@ -211,7 +211,7 @@ public class GavinoAutoII extends LinearOpMode {
 
     public void DRIVE_DISTANCE_LEFT(float distance_in_in) {
         float ticksPerInch = 120.737061895f;
-        float f_ticks = ticksPerInch * distance_in_in;
+        float f_ticks = ((ticksPerInch * distance_in_in)/1.7f);
         int ticks = Math.round(f_ticks);
         // 1120 Ticks per revolution
 
@@ -302,13 +302,14 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(-1, 20f);
             sleep(1000);
             DRIVE_DISTANCE_LEFT(24f);
-            sleep(500);
            // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
-            DRIVE_DISTANCE_FORWARD(-10f, 0.8);
+            sleep(1000);
+            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            sleep(500);
             TURN(1, 20f);
         }
     }
@@ -355,6 +356,9 @@ public class GavinoAutoII extends LinearOpMode {
             SIX_EYES();
         }
         sleep(2000);
+        DRIVE_DISTANCE_FORWARD(26f,0.8);
+        DRIVE_DISTANCE_RIGHT(40f);
+        DRIVE_DISTANCE_FORWARD(20f,0.8);
         }
 
 //Tristan is smelly
