@@ -293,27 +293,30 @@ public class GavinoAutoII extends LinearOpMode {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(24f);
+            DRIVE_DISTANCE_RIGHT(16f);
             sleep(500);
             TURN(-1, 40f);
-            //DRIVE_DISTANCE_LEFT(10f);
+            DRIVE_DISTANCE_FORWARD(26f,0.8);
+            DRIVE_DISTANCE_RIGHT(34);
+            DRIVE_DISTANCE_FORWARD(20f,0.8);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
             sleep(1000);
-            DRIVE_DISTANCE_LEFT(24f);
-           // TURN(1, 20f);
-            //DRIVE_DISTANCE_RIGHT(10f);
+            circumnavigate();
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-40f, 0.8);
-            sleep(1500);
-            TURN(1, 20f);
+            circumnavigate();
         }
     }
 
+    public void circumnavigate(){
+        DRIVE_DISTANCE_FORWARD(26f,0.8);
+        DRIVE_DISTANCE_RIGHT(18f);
+        DRIVE_DISTANCE_FORWARD(20f,0.8);
+    }
 
     @Override
     public void runOpMode() {
@@ -351,14 +354,11 @@ public class GavinoAutoII extends LinearOpMode {
         if (opModeIsActive()) {
             // TURN(1, 90f);
 
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            DRIVE_DISTANCE_FORWARD(-28f, 0.8);
             sleep(1873);
             SIX_EYES();
         }
         sleep(1000);
-        DRIVE_DISTANCE_FORWARD(26f,0.8);
-        DRIVE_DISTANCE_RIGHT(46f);
-        DRIVE_DISTANCE_FORWARD(20f,0.8);
     }
 
 //Tristan is smelly
