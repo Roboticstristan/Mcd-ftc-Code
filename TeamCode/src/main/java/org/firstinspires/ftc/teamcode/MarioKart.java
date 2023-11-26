@@ -20,7 +20,7 @@ public class MarioKart extends LinearOpMode {
     private DcMotor llSlide = null;
     private DcMotor rlSlide = null;
     private DcMotor intake = null;
-    private Servo claw = null;
+    private Servo box = null;
     private Servo arm = null;
     private
     //Defines Info for Claw Servo
@@ -33,13 +33,6 @@ public class MarioKart extends LinearOpMode {
     double position = (MAX_POS - MIN_POS) / 2;
     private int count;
     private int count2;
-
-    //Button Mapping
-    private double lsUp = gamepad1.right_trigger;
-    private double lsDown = gamepad1.left_trigger;
-    private boolean intaketh = gamepad1.y;
-    private boolean preset = gamepad1.b;
-    private boolean openClose = gamepad1.a;
 
 
     //variable that holds the amount of time is running
@@ -56,12 +49,12 @@ public class MarioKart extends LinearOpMode {
         llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
         rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
         intake = hardwareMap.get(DcMotor.class, "intake");
-        claw = hardwareMap.get(Servo.class, "claw");
+        box = hardwareMap.get(Servo.class, "box");
         arm = hardwareMap.get(Servo.class, "arm");
 
-        backLeft.setDirection(DcMotor.Direction.FORWARD);
-        backRight.setDirection(DcMotor.Direction.REVERSE);
-        frontLeft.setDirection(DcMotor.Direction.FORWARD);
+        backLeft.setDirection(DcMotor.Direction.REVERSE);
+        backRight.setDirection(DcMotor.Direction.FORWARD);
+        frontLeft.setDirection(DcMotor.Direction.FORWARD=);
         frontRight.setDirection(DcMotor.Direction.REVERSE);
 
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -120,17 +113,18 @@ public class MarioKart extends LinearOpMode {
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.update();
 
+
             //Forward brings linear slide up
-            if(lsUp > 0)
+            if(gamepad1.right_trigger > 0)
             {
                 llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-                rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                rlSlide.setDirection(DcMotorSimple.Direction.REVERSE);
                 llSlide.setPower(0.6);
                 rlSlide.setPower(0.6);
-            }else if(lsDown > 0)
+            }else if(gamepad1.left_trigger > 0)
             {
                 llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-                rlSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+                rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                 llSlide.setPower(0.9);
                 rlSlide.setPower(0.9);
             } else {
@@ -140,10 +134,10 @@ public class MarioKart extends LinearOpMode {
                 rlSlide.setPower(0.09);
             }
 
-            if(intaketh){
+            if(gamepad1.y){
                 count++;
                 if (count % 2 != 0) {
-                    intake.setDirection(DcMotorSimple.Direction.FORWARD);
+                    intake.setDirection(DcMotorSimple.Direction.REVERSE);
                     intake.setPower(1);
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
@@ -153,21 +147,21 @@ public class MarioKart extends LinearOpMode {
                 }
             }
 
-            if(openClose){
+            if(gamepad1.a){
                 count++;
                 if (count % 2 == 1){
-                    claw.setPosition(MAX_POS);
+                    box.setPosition(MAX_POS);
                 } else {
-                    claw.setPosition(MIN_POS);
+                    box.setPosition(MIN_POS);
                 }
             }
 
-            if(preset){
-                llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            if(gamepad1.b){
+                llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                 rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                 llSlide.setPower(0.5);
                 rlSlide.setPower(0.5);
-                sleep(200);
+                sleep(300);
                 llSlide.setPower(0);
                 rlSlide.setPower(0);
             }
