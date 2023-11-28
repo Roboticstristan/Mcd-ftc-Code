@@ -162,11 +162,12 @@ public class MarioKart extends LinearOpMode {
                 llSlide.setPower(0.5);
                 rlSlide.setPower(0.5);
                 sleep(300);
+                arm.setPosition(Servo.MAX_POSITION);
                 llSlide.setPower(0);
                 rlSlide.setPower(0);
             }
 
-//Tristan is smelly
+
         }
 
     }
