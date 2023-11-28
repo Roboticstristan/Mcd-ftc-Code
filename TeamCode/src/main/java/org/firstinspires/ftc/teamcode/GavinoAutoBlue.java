@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -19,11 +20,16 @@ public class GavinoAutoBlue extends LinearOpMode {
     private DcMotor backLeft = null;
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
-    //private DcMotor linearSlide = null;
-    //declare color sensor
-    //private NormalizedColorSensor colorSensor = null;
-    //private DcMotor colorSensor = null;
-    //public Servo claw = null;
+
+    public Servo boxServo = null;
+    public Servo pixelServo = null;
+
+    public Servo armServo = null;
+    public double ServoMax = 0.5;
+    public double ServoMin = 0;
+
+
+
 
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -293,6 +299,9 @@ public class GavinoAutoBlue extends LinearOpMode {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
             sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
             DRIVE_DISTANCE_RIGHT(24f);
             sleep(500);
             TURN(1, 40f);
@@ -302,6 +311,9 @@ public class GavinoAutoBlue extends LinearOpMode {
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
             sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
             DRIVE_DISTANCE_LEFT(24f);
             sleep(500);
            // TURN(1, 20f);
@@ -309,6 +321,11 @@ public class GavinoAutoBlue extends LinearOpMode {
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
+            sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
+            sleep(500);
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             TURN(1, 20f);
             DRIVE_DISTANCE_LEFT(24f);
@@ -352,8 +369,9 @@ public class GavinoAutoBlue extends LinearOpMode {
         sensorRange2 = hardwareMap.get(DistanceSensor.class, "right_Distance");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
         //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
-        //claw = hardwareMap.get(Servo.class, "claw");
-
+        pixelServo = hardwareMap.get(Servo.class, "pixelServo");
+        boxServo = hardwareMap.get(Servo.class, "box");
+        armServo = hardwareMap.get(Servo.class,"arm");
 
 
 
@@ -364,6 +382,7 @@ public class GavinoAutoBlue extends LinearOpMode {
         waitForStart();
         runtime.reset();
          */
+        pixelServo.setPosition(Servo.MIN_POSITION);
         waitForStart();
         runtime.reset();
 
