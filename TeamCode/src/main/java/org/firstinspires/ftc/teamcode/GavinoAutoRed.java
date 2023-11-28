@@ -336,26 +336,6 @@ public class GavinoAutoRed extends LinearOpMode {
         }
     }
 
-
-
-      /*   if (duncan.SIX_EYES() == 1) {
-                telemetry.addData("Block Placement:", "Left");
-                //turn left 90
-                // Place pixel
-                // turn right 90
-            } else if (duncan.SIX_EYES() == 2) {
-                telemetry.addData("Block Placement:", "Right");
-                //turn right 90
-                //place pixel
-                //turn left 90
-            } else {
-                telemetry.addData("Block Placement:", "Forward");
-                //drive forward
-                //place pixel
-            }
-        }*/
-
-
     @Override
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
@@ -379,13 +359,7 @@ public class GavinoAutoRed extends LinearOpMode {
 
 
 
-        /*if (colorSensor instanceof SwitchableLight) {
-            ((SwitchableLight)colorSensor).enableLight(true);
-        }
-        claw.setPosition(0);
-        waitForStart();
-        runtime.reset();
-         */
+
         pixelServo.setPosition(Servo.MIN_POSITION);
         waitForStart();
         runtime.reset();
@@ -411,7 +385,7 @@ public class GavinoAutoRed extends LinearOpMode {
         // DRIVE_DISTANCE_RIGHT();
     }
 
-//Tristan is smelly
+
 }
 
 
