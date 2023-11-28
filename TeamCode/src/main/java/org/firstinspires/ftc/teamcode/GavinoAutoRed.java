@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -19,6 +20,9 @@ public class GavinoAutoRed extends LinearOpMode {
     private DcMotor backLeft = null;
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
+    public Servo boxServo = null;
+    public Servo pixelServo = null;
+    public Servo armServo = null;
     //private DcMotor linearSlide = null;
     //declare color sensor
     //private NormalizedColorSensor colorSensor = null;
@@ -293,6 +297,10 @@ public class GavinoAutoRed extends LinearOpMode {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
             sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
+            sleep(1000);
             DRIVE_DISTANCE_RIGHT(5f);
             sleep(500);
 
@@ -303,6 +311,10 @@ public class GavinoAutoRed extends LinearOpMode {
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
             sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
+            sleep(1000);
             DRIVE_DISTANCE_LEFT(24f);
             sleep(500);
             TURN(1, 40f);
@@ -311,7 +323,11 @@ public class GavinoAutoRed extends LinearOpMode {
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(1, 40f);
-            sleep(200);
+            sleep(1000);
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            sleep(500);
+            pixelServo.setPosition(Servo.MIN_POSITION);
+            sleep(1000);
             DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             sleep(400);
             TURN(-1, 20f);
@@ -355,8 +371,10 @@ public class GavinoAutoRed extends LinearOpMode {
         sensorRange1 = hardwareMap.get(DistanceSensor.class, "left_Distance");
         sensorRange2 = hardwareMap.get(DistanceSensor.class, "right_Distance");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
-        //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
-        //claw = hardwareMap.get(Servo.class, "claw");
+        pixelServo = hardwareMap.get(Servo.class, "pixelServo");
+        boxServo = hardwareMap.get(Servo.class, "box");
+        armServo = hardwareMap.get(Servo.class,"arm");
+
 
 
 
@@ -368,6 +386,7 @@ public class GavinoAutoRed extends LinearOpMode {
         waitForStart();
         runtime.reset();
          */
+        pixelServo.setPosition(Servo.MIN_POSITION);
         waitForStart();
         runtime.reset();
 
