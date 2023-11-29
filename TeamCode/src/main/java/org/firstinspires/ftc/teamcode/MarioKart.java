@@ -150,19 +150,19 @@ public class MarioKart extends LinearOpMode {
             if(gamepad1.a){
                 count++;
                 if (count % 2 == 1){
-                    box.setPosition(MAX_POS);
+                    box.setPosition(Servo.MAX_POSITION);
                 } else {
-                    box.setPosition(MIN_POS);
+                    box.setPosition(Servo.MIN_POSITION);
                 }
             }
 
             if(gamepad1.b){
-                llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+                llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
                 rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                 llSlide.setPower(0.5);
                 rlSlide.setPower(0.5);
                 sleep(300);
-                arm.setPosition(Servo.MAX_POSITION);
+                arm.setPosition(Servo.MIN_POSITION);
                 llSlide.setPower(0);
                 rlSlide.setPower(0);
             }
