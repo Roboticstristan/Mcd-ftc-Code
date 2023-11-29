@@ -369,6 +369,7 @@ public class GavinoAutoBlue extends LinearOpMode {
         runtime.reset();
          */
         pixelServo.setPosition(Servo.MIN_POSITION);
+        armServo.setPosition(Servo.MAX_POSITION);
         waitForStart();
         runtime.reset();
 

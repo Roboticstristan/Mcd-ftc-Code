@@ -27,18 +27,23 @@ public class MarioKart extends LinearOpMode {
     static final double INCREMENT   = 0.25;     // amount to slew servo each CYCLE_MS cycle
     static final int    CYCLE_MS    =   50;     // period of each cycle
     // 0 gets to the mid setting of servo button x closes
-    // 0.5 gets to the left setting of servo button b opens
-    static final double MAX_POS     =  0.5;     // Maximum rotational position
-    static final double MIN_POS     =  0;     // Minimum rotational position
-    double position = (MAX_POS - MIN_POS) / 2;
+    // 0.5 gets to the left setting of servo button b opensstatic final double MAX_POS     =  0.5;     // Maximum rotational position
+
     private int count;
     private int count2;
-
+    private int countArm;
     private int countPre;
 
 
     //variable that holds the amount of time is running
     private ElapsedTime runtime = new ElapsedTime();
+    public void armControl(){
+        if(countArm % 2 == 0 && countArm != 0){
+            arm.setPosition(0.55);
+        } else if (countArm % 2 != 0) {
+            arm.setPosition(Servo.MAX_POSITION);
+        }
+    }
     public void attempt() {
         if (countPre % 2 != 0) {
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -95,7 +100,7 @@ public class MarioKart extends LinearOpMode {
 
 
         // Wait for the game to start (driver presses PLAY)
-        arm.setPosition(Servo.MAX_POSITION);
+        arm.setPosition(Servo.MAX_POSITION+0.1);
         waitForStart();
         runtime.reset();
 
@@ -191,6 +196,10 @@ public class MarioKart extends LinearOpMode {
             if(gamepad1.b){
                 countPre++;
                 attempt();
+            }
+            if(gamepad1.x){
+                countArm++;
+                armControl();
             }
 
 

@@ -362,6 +362,7 @@ public class GavinoAutoRed extends LinearOpMode {
 
 
         pixelServo.setPosition(Servo.MIN_POSITION);
+        armServo.setPosition(Servo.MAX_POSITION);
         waitForStart();
         runtime.reset();
 
@@ -370,17 +371,17 @@ public class GavinoAutoRed extends LinearOpMode {
         if (opModeIsActive()) {
             // TURN(1, 90f);
 
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(1873);
+            //DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            //sleep(1873);
             SIX_EYES();
         }
-        sleep(2000);
+       // sleep(2000);
 
 
-        DRIVE_DISTANCE_FORWARD(50f, 0.5);
-        DRIVE_DISTANCE_LEFT(20.4f);
+       // DRIVE_DISTANCE_FORWARD(50f, 0.5);
+       // DRIVE_DISTANCE_LEFT(20.4f);
 
-        DRIVE_DISTANCE_FORWARD(5f, 1);
+       // DRIVE_DISTANCE_FORWARD(5f, 1);
 
         //  TURN(12,1);
         // DRIVE_DISTANCE_RIGHT();
