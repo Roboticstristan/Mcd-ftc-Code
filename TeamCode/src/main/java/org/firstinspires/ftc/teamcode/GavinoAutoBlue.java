@@ -300,12 +300,14 @@ public class GavinoAutoBlue extends LinearOpMode {
             TURN(1, 20f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(24f);
-            sleep(500);
-            TURN(1, 40f);
+            TURN(-1, 20f);
+           //  sleep(1000);
+           // DRIVE_DISTANCE_RIGHT(24f);
+            //sleep(500);
+            //TURN(1, 40f);
         //    TURN(-1, 20f);
             //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
@@ -313,11 +315,12 @@ public class GavinoAutoBlue extends LinearOpMode {
             TURN(-1, 20f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_LEFT(24f);
-            sleep(500);
+            TURN(1, 20f);
+           // DRIVE_DISTANCE_LEFT(24f);
+           // sleep(500);
            // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
@@ -325,13 +328,14 @@ public class GavinoAutoBlue extends LinearOpMode {
             TURN(-1, 40f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            TURN(1, 20f);
-            DRIVE_DISTANCE_LEFT(24f);
-            sleep(500);
+            TURN(1, 40f);
+            //DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+           // TURN(1, 20f);
+            //DRIVE_DISTANCE_LEFT(24f);
+            //sleep(500);
         }
     }
 
@@ -373,17 +377,17 @@ public class GavinoAutoBlue extends LinearOpMode {
         if (opModeIsActive()) {
             // TURN(1, 90f);
 
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(1873);
+           // DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            //sleep(1873);
             SIX_EYES();
         }
         sleep(2000);
 
 
-        DRIVE_DISTANCE_FORWARD(50f, 0.5);
-        DRIVE_DISTANCE_RIGHT(20.4f);
+        //DRIVE_DISTANCE_FORWARD(50f, 0.5);
+       // DRIVE_DISTANCE_RIGHT(20.4f);
 
-        DRIVE_DISTANCE_FORWARD(5f, 1);
+       // DRIVE_DISTANCE_FORWARD(5f, 1);
 
         //  TURN(12,1);
         // DRIVE_DISTANCE_RIGHT();

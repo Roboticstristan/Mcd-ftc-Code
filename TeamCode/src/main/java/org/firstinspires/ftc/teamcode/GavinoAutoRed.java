@@ -298,26 +298,26 @@ public class GavinoAutoRed extends LinearOpMode {
             TURN(1, 20f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(2000);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(5f);
-            sleep(500);
-
-
-            //    TURN(-1, 20f);
-            //DRIVE_DISTANCE_LEFT(10f);
+            TURN(-1, 20f);
+           // DRIVE_DISTANCE_RIGHT(5f);
+           // sleep(500);
+           // TURN(-1, 20f);
+           // DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(2000);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_LEFT(24f);
-            sleep(500);
-            TURN(1, 40f);
+            TURN(1, 20f);
+           // DRIVE_DISTANCE_LEFT(24f);
+           // sleep(500);
+           // TURN(1, 40f);
             // TURN(1, 20f);
             //DRIVE_DISTANCE_RIGHT(10f);
         } else {
@@ -325,14 +325,15 @@ public class GavinoAutoRed extends LinearOpMode {
             TURN(1, 40f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(2000);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(400);
-            TURN(-1, 20f);
-            DRIVE_DISTANCE_RIGHT(24f);
-            sleep(500);
+            TURN(-1, 40f);
+           // DRIVE_DISTANCE_FORWARD(-30f, 0.8);
+            //sleep(400);
+           // TURN(-1, 20f);
+          //  DRIVE_DISTANCE_RIGHT(24f);
+           // sleep(500);
         }
     }
 

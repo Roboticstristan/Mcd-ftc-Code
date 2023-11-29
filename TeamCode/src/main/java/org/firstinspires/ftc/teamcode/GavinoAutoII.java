@@ -294,7 +294,7 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(1, 20f);
             sleep(1000);
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
             TURN(1,40f);
