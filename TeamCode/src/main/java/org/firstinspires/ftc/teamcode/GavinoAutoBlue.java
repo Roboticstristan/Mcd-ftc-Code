@@ -341,11 +341,17 @@ public class GavinoAutoBlue extends LinearOpMode {
             sleep(1000);
             // Turn back to face original starting position
             TURN(1, 20f);
+            // The final iteration which is the third option so only requires an else; not an else if
         } else {
+            // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
+            // Turn 180 degrees to have the front of the robot facing the team prop assigned line
             TURN(-1, 40f);
+            // Wait 1 second for efficiatcy
             sleep(1000);
+            // As before, set the servo to max position
             pixelServo.setPosition(Servo.MAX_POSITION);
+            // Wait 1.5 seconds
             sleep(1500);
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
