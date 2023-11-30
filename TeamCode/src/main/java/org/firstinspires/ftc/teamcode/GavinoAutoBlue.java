@@ -293,19 +293,34 @@ public class GavinoAutoBlue extends LinearOpMode {
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
     //20 inches is 90 degrees
+    // 20 in = turn right
+    //-20 in = turn left
 
 
-    public void SIX_EYES() {
-
+    public void markerDetection() {
+        // This is an if statement to determine if the marker is within 20 cm from the right distance sensor
+        // We turn the opposite direction of the detected block placement because our robot strategically starts off backwards so our code can be more efficient-
+        // and so we can navigate the board easier
+        //If this if statement evaluates to true based on the parameters then the robot will execute the code only within this if statement and nothing else
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) &&
                 (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            // This is telemetry which is data that is uploaded to our photo telling us the live output from our sensors
+            // This is helpful in parsing through our code to see our mistakes
             telemetry.addData("Block Placement:", "Left");
+            // Turning to the right 90 degrees so we are now facing the alliance marker that we detected
             TURN(1, 20f);
+            // Wait 1 second (No movement) before raising belt drive to ensure prescion
             sleep(1000);
+            // We have a preset beltdrive position that we found through measurments that is the optimal height for droping pixel and although we already set
+            // the mechinism to maximum height we do it again as a double check reasurence
             pixelServo.setPosition(Servo.MAX_POSITION);
+            // Wait 1.5 seconds so we are sure there is no wobbaling
             sleep(1500);
+            //Set the purple pixel servo to the minimum preset height
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // Waiting a second to ensure the pixel has fallen off
             sleep(1000);
+            // Turn back in the opposite
             TURN(-1, 20f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) &&
                 (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
@@ -370,7 +385,7 @@ public class GavinoAutoBlue extends LinearOpMode {
 
            // DRIVE_DISTANCE_FORWARD(-30f, 0.8);
             //sleep(1873);
-            SIX_EYES();
+            markerDetection();
         }
         sleep(2000);
 
