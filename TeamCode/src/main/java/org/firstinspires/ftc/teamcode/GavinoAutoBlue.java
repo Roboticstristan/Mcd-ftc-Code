@@ -292,9 +292,11 @@ public class GavinoAutoBlue extends LinearOpMode {
     //     sensorRange1.getDistance(DistanceUnit.CM);
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
+    //20 inches is 90 degrees
+
 
     public void SIX_EYES() {
-        //20 inches is 90 degrees
+
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Left");
             TURN(1, 20f);
@@ -304,12 +306,6 @@ public class GavinoAutoBlue extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
             TURN(-1, 20f);
-           //  sleep(1000);
-           // DRIVE_DISTANCE_RIGHT(24f);
-            //sleep(500);
-            //TURN(1, 40f);
-        //    TURN(-1, 20f);
-            //DRIVE_DISTANCE_LEFT(10f);
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
             telemetry.addData("Block Placement:", "Right");
             TURN(-1, 20f);
@@ -319,10 +315,6 @@ public class GavinoAutoBlue extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
             TURN(1, 20f);
-           // DRIVE_DISTANCE_LEFT(24f);
-           // sleep(500);
-           // TURN(1, 20f);
-            //DRIVE_DISTANCE_RIGHT(10f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
             TURN(-1, 40f);
@@ -332,10 +324,6 @@ public class GavinoAutoBlue extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             sleep(1000);
             TURN(1, 40f);
-            //DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-           // TURN(1, 20f);
-            //DRIVE_DISTANCE_LEFT(24f);
-            //sleep(500);
         }
     }
 
