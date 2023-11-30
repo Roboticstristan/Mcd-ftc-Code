@@ -320,17 +320,26 @@ public class GavinoAutoBlue extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             // Waiting a second to ensure the pixel has fallen off
             sleep(1000);
-            // Turn back in the opposite
+            // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
+            // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) &&
                 (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            // In this else if statement is true then this telemetry dada will be translated to the photo telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
+            // Turn left to face alliance marker
             TURN(-1, 20f);
+            // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
+            // Verify the mechanism is at top by re-setting it to max position
             pixelServo.setPosition(Servo.MAX_POSITION);
+            // The entire robot waits for 1.5 seconds to make sure the servo is set to right position and stopped
             sleep(1500);
+            // Drop the pixel on the line according to team prop]
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // Sleep for 1 second so pixel is fully dropped off of robot and to mitigate chance that robot hits pixel off of line
             sleep(1000);
+            // Turn back to face original starting position
             TURN(1, 20f);
         } else {
             telemetry.addData("Block Placement:", "Forward");
