@@ -304,40 +304,39 @@ public class GavinoAutoBlue extends LinearOpMode {
         //If this if statement evaluates to true based on the parameters then the robot will execute the code only within this if statement and nothing else
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) &&
                 (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            // This is telemetry which is data that is uploaded to our photo telling us the live output from our sensors
+            // This is telemetry which is data that is uploaded to our phone telling us the live output from our sensors
             // This is helpful in parsing through our code to see our mistakes
             telemetry.addData("Block Placement:", "Left");
             // Turning to the right 90 degrees so we are now facing the alliance marker that we detected
             TURN(1, 20f);
-            // Wait 1 second (No movement) before raising belt drive to ensure prescion
+            // Wait 1 second (No movement) to ensure that the servo is not moved while placing pixel
             sleep(1000);
-            // We have a preset beltdrive position that we found through measurments that is the optimal height for droping pixel and although we already set
-            // the mechinism to maximum height we do it again as a double check reasurence
+            //Set the purple pixel servo to the max preset position (set to downward position)
             pixelServo.setPosition(Servo.MAX_POSITION);
-            // Wait 1.5 seconds so we are sure there is no wobbaling
+            // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
             sleep(1500);
-            //Set the purple pixel servo to the minimum preset height
+            //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
-            // Waiting a second to ensure the pixel has fallen off
+            // Waiting a second so that the servo is out of way before moving
             sleep(1000);
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) &&
                 (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            // In this else if statement is true then this telemetry dada will be translated to the photo telling us that the marker is on the right
+            // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
             // Turn left to face alliance marker
             TURN(-1, 20f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
-            // Verify the mechanism is at top by re-setting it to max position
+            // Drop the pixel off of the servo
             pixelServo.setPosition(Servo.MAX_POSITION);
-            // The entire robot waits for 1.5 seconds to make sure the servo is set to right position and stopped
+            // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
             sleep(1500);
-            // Drop the pixel on the line according to team prop]
+            // Verify the mechanism is at top by re-setting it to max position
             pixelServo.setPosition(Servo.MIN_POSITION);
-            // Sleep for 1 second so pixel is fully dropped off of robot and to mitigate chance that robot hits pixel off of line
+            // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
             // Turn back to face original starting position
             TURN(1, 20f);
@@ -347,13 +346,15 @@ public class GavinoAutoBlue extends LinearOpMode {
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
             TURN(-1, 40f);
-            // Wait 1 second for efficiatcy
+            // Wait 1 second for efficiency
             sleep(1000);
-            // As before, set the servo to max position
+            // As before, set the servo to outward position so that the pixel can drop
             pixelServo.setPosition(Servo.MAX_POSITION);
-            // Wait 1.5 seconds
+            // Wait 1.5 seconds to ensure pixel fall out properly
             sleep(1500);
+            //sets back to og position.
             pixelServo.setPosition(Servo.MIN_POSITION);
+
             sleep(1000);
             TURN(1, 40f);
         }
