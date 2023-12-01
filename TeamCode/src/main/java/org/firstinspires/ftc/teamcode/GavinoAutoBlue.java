@@ -298,23 +298,12 @@ public class GavinoAutoBlue extends LinearOpMode {
 
 
     public void markerDetection() {
-        // This is an if statement to determine if the marker is within 20 cm from the right distance sensor
-        // We turn the opposite direction of the detected block placement because our robot strategically starts off backwards so our code can be more efficient-
-        // and so we can navigate the board easier
-        //If this if statement evaluates to true based on the parameters then the robot will execute the code only within this if statement and nothing else
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) &&
-                (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            // This is telemetry which is data that is uploaded to our phone telling us the live output from our sensors
-            // This is helpful in parsing through our code to see our mistakes
-            telemetry.addData("Block Placement:", "Left");
-            // Turning to the right 90 degrees so we are now facing the alliance marker that we detected
-            TURN(1, 20f);
-            // Wait 1 second (No movement) to ensure that the servo is not moved while placing pixel
-            sleep(1000);
-            //Set the purple pixel servo to the max preset position (set to downward position)
-            pixelServo.setPosition(Servo.MAX_POSITION);
-            // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
-            sleep(1500);
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
+            telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
+            TURN(1, 20f);   // Turning to the right 90 degrees
+            sleep(1000);    // Wait 1 second
+            pixelServo.setPosition(Servo.MAX_POSITION); // Places the pixel
+            sleep(1500);    // Wait 1.5 seconds
             //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
             // Waiting a second so that the servo is out of way before moving
@@ -322,8 +311,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) &&
-                (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
             // Turn left to face alliance marker
@@ -341,7 +329,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             // Turn back to face original starting position
             TURN(1, 20f);
             // The final iteration which is the third option so only requires an else; not an else if
-        } else {
+        } else {    // Runs following code only if block neither on right or left
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
