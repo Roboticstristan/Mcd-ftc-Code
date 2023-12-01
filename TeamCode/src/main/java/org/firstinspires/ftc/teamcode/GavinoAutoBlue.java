@@ -352,10 +352,11 @@ public class GavinoAutoBlue extends LinearOpMode {
             pixelServo.setPosition(Servo.MAX_POSITION);
             // Wait 1.5 seconds to ensure pixel fall out properly
             sleep(1500);
-            //sets back to og position.
+            //Sets back to og position.
             pixelServo.setPosition(Servo.MIN_POSITION);
-
+            // Wait 1 second
             sleep(1000);
+            // Turn to face original
             TURN(1, 40f);
         }
     }
