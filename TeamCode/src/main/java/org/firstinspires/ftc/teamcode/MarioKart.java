@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-
+// This is the current Competition 1, 2023/2024 driving code with all motors + servos integrated in
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;

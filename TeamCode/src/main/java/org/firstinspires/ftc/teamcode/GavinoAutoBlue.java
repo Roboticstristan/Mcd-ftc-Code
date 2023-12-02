@@ -386,22 +386,16 @@ public class GavinoAutoBlue extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            // TURN(1, 90f);
-
-           // DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            //sleep(1873);
+            DRIVE_DISTANCE_FORWARD(-30,1.2);
+            sleep(1000);
             markerDetection();
+            DRIVE_DISTANCE_FORWARD(30,1.2);
+            DRIVE_DISTANCE_RIGHT(20.4f);
+            DRIVE_DISTANCE_FORWARD(-24,1.2);
+            TURN(1,20);
+            //move arm to place pixel
         }
         sleep(2000);
-
-
-        //DRIVE_DISTANCE_FORWARD(50f, 0.5);
-       // DRIVE_DISTANCE_RIGHT(20.4f);
-
-       // DRIVE_DISTANCE_FORWARD(5f, 1);
-
-        //  TURN(12,1);
-        // DRIVE_DISTANCE_RIGHT();
         }
 
     }
