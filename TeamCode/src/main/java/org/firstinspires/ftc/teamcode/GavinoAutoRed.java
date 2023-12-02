@@ -291,49 +291,56 @@ public class GavinoAutoRed extends LinearOpMode {
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
 
-    public void SIX_EYES() {
-        //20 inches is 90 degrees
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            telemetry.addData("Block Placement:", "Left");
-            TURN(1, 20f);
-            sleep(1000);
-            pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(1500);
+    public void markerDetection() {
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
+            telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
+            TURN(1, 20f);   // Turning to the right 90 degrees
+            sleep(1000);    // Wait 1 second
+            pixelServo.setPosition(Servo.MAX_POSITION); // Places the pixel
+            sleep(1500);    // Wait 1.5 seconds
+            //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // Waiting a second so that the servo is out of way before moving
             sleep(1000);
+            // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
-           // DRIVE_DISTANCE_RIGHT(5f);
-           // sleep(500);
-           // TURN(-1, 20f);
-           // DRIVE_DISTANCE_LEFT(10f);
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+            // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
+            // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
+            // Turn left to face alliance marker
             TURN(-1, 20f);
+            // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
+            // Drop the pixel off of the servo
             pixelServo.setPosition(Servo.MAX_POSITION);
+            // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
             sleep(1500);
+            // Verify the mechanism is at top by re-setting it to max position
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
+            // Turn back to face original starting position
             TURN(1, 20f);
-           // DRIVE_DISTANCE_LEFT(24f);
-           // sleep(500);
-           // TURN(1, 40f);
-            // TURN(1, 20f);
-            //DRIVE_DISTANCE_RIGHT(10f);
-        } else {
+            // The final iteration which is the third option so only requires an else; not an else if
+        } else {    // Runs following code only if block neither on right or left
+            // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
-            TURN(1, 40f);
-            sleep(1000);
-            pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(1500);
-            pixelServo.setPosition(Servo.MIN_POSITION);
-            sleep(1000);
+            // Turn 180 degrees to have the front of the robot facing the team prop assigned line
+            DRIVE_DISTANCE_FORWARD(2,1);
             TURN(-1, 40f);
-           // DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            //sleep(400);
-           // TURN(-1, 20f);
-          //  DRIVE_DISTANCE_RIGHT(24f);
-           // sleep(500);
+            // Wait 1 second for efficiency
+            sleep(1000);
+            // As before, set the servo to outward position so that the pixel can drop
+            pixelServo.setPosition(Servo.MAX_POSITION);
+            // Wait 1.5 seconds to ensure pixel fall out properly
+            sleep(1500);
+            //Sets back to og position.
+            pixelServo.setPosition(Servo.MIN_POSITION);
+            // Wait 1 second
+            sleep(1000);
+            // Turn to face original
+            TURN(1, 40f);
         }
     }
 
@@ -369,22 +376,10 @@ public class GavinoAutoRed extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            // TURN(1, 90f);
 
-            //DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            //sleep(1873);
-            SIX_EYES();
+            markerDetection();
         }
-       // sleep(2000);
 
-
-       // DRIVE_DISTANCE_FORWARD(50f, 0.5);
-       // DRIVE_DISTANCE_LEFT(20.4f);
-
-       // DRIVE_DISTANCE_FORWARD(5f, 1);
-
-        //  TURN(12,1);
-        // DRIVE_DISTANCE_RIGHT();
     }
 
 

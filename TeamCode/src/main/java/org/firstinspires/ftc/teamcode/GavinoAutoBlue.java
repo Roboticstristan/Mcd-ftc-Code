@@ -333,6 +333,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
+            DRIVE_DISTANCE_FORWARD(2,1);
             TURN(-1, 40f);
             // Wait 1 second for efficiency
             sleep(1000);
@@ -389,10 +390,10 @@ public class GavinoAutoBlue extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(-30,1.2);
             sleep(1000);
             markerDetection();
-            DRIVE_DISTANCE_FORWARD(30,1.2);
-            DRIVE_DISTANCE_RIGHT(20.4f);
-            DRIVE_DISTANCE_FORWARD(-24,1.2);
-            TURN(1,20);
+           // DRIVE_DISTANCE_FORWARD(28,1.2);
+           // DRIVE_DISTANCE_RIGHT(20.4f);
+            //DRIVE_DISTANCE_FORWARD(-24,1.2);
+            //TURN(1,20);
             //move arm to place pixel
         }
         sleep(2000);

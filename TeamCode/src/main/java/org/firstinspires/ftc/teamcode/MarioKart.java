@@ -39,36 +39,40 @@ public class MarioKart extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     public void armControl(){
         if(countArm % 2 == 0 && countArm != 0){
-            arm.setPosition(0.55);
+            llSlide.setPower(-0.2);
+            rlSlide.setPower(-0.2);
+            sleep(300);
         } else if (countArm % 2 != 0) {
-            arm.setPosition(Servo.MAX_POSITION);
+            llSlide.setPower(0.2);
+            rlSlide.setPower(0.2);
+            sleep(300);
         }
     }
     public void attempt() {
         if (countPre % 2 != 0) {
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(0.2);
-            rlSlide.setPower(0.2);
+            llSlide.setPower(0.25);
+            rlSlide.setPower(0.25);
             sleep(300);
             arm.setPosition(Servo.MIN_POSITION);
             sleep(500);
-            llSlide.setPower(0.5);
-            rlSlide.setPower(0.5);
+            llSlide.setPower(1.3);
+            rlSlide.setPower(1.3);
             sleep(500);
             llSlide.setPower(0);
             rlSlide.setPower(0);
         } else if (countPre % 2 == 0 && countPre != 0) {
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(-0.1);
-            rlSlide.setPower(-0.1);
-            sleep(300);
-            arm.setPosition(Servo.MAX_POSITION);
+            llSlide.setPower(-0.25);
+            rlSlide.setPower(-0.25);
             sleep(500);
-            llSlide.setPower(-0.6);
-            rlSlide.setPower(-0.6);
-            sleep(500);
+            arm.setPosition(0.5);
+            sleep(1000);
+            llSlide.setPower(-1.5);
+            rlSlide.setPower(-1.);
+            sleep(1000);
             llSlide.setPower(0);
             rlSlide.setPower(0);
         }
@@ -100,7 +104,7 @@ public class MarioKart extends LinearOpMode {
 
 
         // Wait for the game to start (driver presses PLAY)
-        arm.setPosition(Servo.MAX_POSITION+0.1);
+        arm.setPosition(0.5);
         waitForStart();
         runtime.reset();
 
@@ -152,13 +156,13 @@ public class MarioKart extends LinearOpMode {
 
 
             //Forward brings linear slide up
-            if(gamepad1.right_trigger > 0)
+            if(gamepad1.left_trigger > 0)
             {
                 llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
                 rlSlide.setDirection(DcMotorSimple.Direction.REVERSE);
                 llSlide.setPower(0.6);
                 rlSlide.setPower(0.6);
-            }else if(gamepad1.left_trigger > 0)
+            }else if(gamepad1.right_trigger > 0)
             {
                 llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
                 rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
