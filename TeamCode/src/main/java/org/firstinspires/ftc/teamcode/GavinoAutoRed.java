@@ -376,7 +376,8 @@ public class GavinoAutoRed extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-
+            DRIVE_DISTANCE_FORWARD(-30,1);
+            sleep(1000);
             markerDetection();
         }
 

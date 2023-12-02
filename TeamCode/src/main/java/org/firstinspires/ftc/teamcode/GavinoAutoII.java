@@ -286,7 +286,7 @@ public class GavinoAutoII extends LinearOpMode {
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
 
-    public void SIX_EYES() {
+    public void markerDetection() {
         //20 inches is 90 degrees
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
 
@@ -376,11 +376,12 @@ public class GavinoAutoII extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            // TURN(1, 90f);
-
-            DRIVE_DISTANCE_FORWARD(-30f, 0.8);
-            sleep(1873);
-            SIX_EYES();
+            DRIVE_DISTANCE_FORWARD(32,1);
+            markerDetection();
+            DRIVE_DISTANCE_FORWARD(28,1.2);
+            DRIVE_DISTANCE_RIGHT(20.4f);
+            DRIVE_DISTANCE_FORWARD(-24,1.2);
+            TURN(1,20);
         }
         sleep(1000);
     }

@@ -298,8 +298,11 @@ public class GavinoAutoBlue extends LinearOpMode {
 
 
     public void markerDetection() {
+        sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
+            DRIVE_DISTANCE_FORWARD(2,1);
+            sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
             pixelServo.setPosition(Servo.MAX_POSITION); // Places the pixel
@@ -333,7 +336,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
-            DRIVE_DISTANCE_FORWARD(2,1);
+            DRIVE_DISTANCE_FORWARD(4,1);
             TURN(-1, 40f);
             // Wait 1 second for efficiency
             sleep(1000);
@@ -347,6 +350,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             sleep(1000);
             // Turn to face original
             TURN(1, 40f);
+            DRIVE_DISTANCE_FORWARD(-4,1);
         }
     }
 
@@ -387,13 +391,14 @@ public class GavinoAutoBlue extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(-30,1.2);
-            sleep(1000);
+            DRIVE_DISTANCE_FORWARD(-32,1);
+            sleep(2000);
             markerDetection();
-           // DRIVE_DISTANCE_FORWARD(28,1.2);
-           // DRIVE_DISTANCE_RIGHT(20.4f);
-            //DRIVE_DISTANCE_FORWARD(-24,1.2);
-            //TURN(1,20);
+            DRIVE_DISTANCE_FORWARD(28,1.2);
+            DRIVE_DISTANCE_LEFT(20.4f);
+            DRIVE_DISTANCE_FORWARD(-24,1.2);
+            TURN(1,20);
+
             //move arm to place pixel
         }
         sleep(2000);
