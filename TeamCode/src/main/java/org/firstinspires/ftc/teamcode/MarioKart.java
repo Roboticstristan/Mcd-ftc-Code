@@ -28,6 +28,7 @@ public class MarioKart extends LinearOpMode {
     static final int    CYCLE_MS    =   50;     // period of each cycle
     // 0 gets to the mid setting of servo button x closes
     // 0.5 gets to the left setting of servo button b opensstatic final double MAX_POS     =  0.5;     // Maximum rotational position
+    public Servo pixelServo = null;
 
     private int count;
     private int count2;
@@ -93,6 +94,7 @@ public class MarioKart extends LinearOpMode {
         intake = hardwareMap.get(DcMotor.class, "intake");
         box = hardwareMap.get(Servo.class, "box");
         arm = hardwareMap.get(Servo.class, "arm");
+        pixelServo = hardwareMap.get(Servo.class, "pixelServo");
 
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
@@ -107,6 +109,7 @@ public class MarioKart extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         arm.setPosition(0.5);
+        pixelServo.setPosition(Servo.MAX_POSITION);
         waitForStart();
         runtime.reset();
 
@@ -155,6 +158,7 @@ public class MarioKart extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.update();
+            pixelServo.setPosition(Servo.MAX_POSITION);
 
 
             //Forward brings linear slide up
