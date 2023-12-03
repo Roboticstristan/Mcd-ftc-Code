@@ -158,7 +158,7 @@ public class MarioKart extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.update();
-            pixelServo.setPosition(Servo.MAX_POSITION);
+            pixelServo.setPosition(Servo.MIN_POSITION);
 
 
             //Forward brings linear slide up
