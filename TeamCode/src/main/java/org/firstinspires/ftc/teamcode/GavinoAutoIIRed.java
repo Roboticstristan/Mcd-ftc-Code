@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-    @Autonomous(name="redSideBoard", group="Auto2022")
+    @Autonomous(name="nope", group="Auto2022")
     public class GavinoAutoIIRed extends LinearOpMode {
         // Declare OpMode members.
         private ElapsedTime runtime = new ElapsedTime();
