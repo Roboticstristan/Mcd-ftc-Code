@@ -39,12 +39,17 @@ public class MarioKart extends LinearOpMode {
     private int countPixel = 0;
 
     public void pixelControl(){
-        if(countPixel % 2 != 0 ){
+        sleep(500);
+        pixelServo.setPosition(Servo.MAX_POSITION);
+        sleep(500);
+        /*if(countPixel % 2 != 0 ){
             pixelServo.setPosition(Servo.MAX_POSITION);
-        } else if(countPixel % 2 == 0 && countPixel != 0){
+
+        } else if(countPixel % 2 == 0 ){
             pixelServo.setPosition(Servo.MIN_POSITION);
-        }
+        }*/
     }
+    //in the else if statement: "&& countPixel != 0"
 
 
     //variable that holds the amount of time is running
@@ -96,6 +101,7 @@ public class MarioKart extends LinearOpMode {
     public void runOpMode() {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+
         frontRight = hardwareMap.get(DcMotor.class, "rightFront_Drive");
         frontLeft = hardwareMap.get(DcMotor.class, "leftFront_Drive");
         backRight = hardwareMap.get(DcMotor.class, "rightBack_Drive");
@@ -127,8 +133,11 @@ public class MarioKart extends LinearOpMode {
         //  run until the end of the match (driver presses STOP)
         while (opModeIsActive()){
             // Show the elapsed game time and wheel power.
+           // telemetry.addData(countPixel);
+            //telemetry.update();
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.update();
+
             double max;
             // POV Mode uses left joystick to go forward & strafe, and right joystick to rotate.
             double axial   = -gamepad1.left_stick_y;  // Note: pushing stick forward gives negative value
@@ -231,7 +240,7 @@ public class MarioKart extends LinearOpMode {
                 countArm++;
                 armControl();
             }
-            if(gamepad2.x){
+            if(gamepad1.a){
                 countPixel++;
                 pixelControl();
             }
