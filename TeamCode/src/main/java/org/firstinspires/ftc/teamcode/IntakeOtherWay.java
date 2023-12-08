@@ -27,7 +27,7 @@ public class IntakeOtherWay extends LinearOpMode
             if (count % 2 != 0)
             {
                 motor1.setDirection(DcMotorSimple.Direction.REVERSE);
-                motor1.setPower(1);
+                motor1.setPower(0.8);
                 //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                 //motor2.setPower(1);
             } else {
