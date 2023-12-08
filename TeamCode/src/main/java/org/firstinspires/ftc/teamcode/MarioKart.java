@@ -22,6 +22,8 @@ public class MarioKart extends LinearOpMode {
     private DcMotor intake = null;
     private Servo box = null;
     private Servo arm = null;
+
+
     private
     //Defines Info for Claw Servo
     static final double INCREMENT   = 0.25;     // amount to slew servo each CYCLE_MS cycle
@@ -34,18 +36,27 @@ public class MarioKart extends LinearOpMode {
     private int count2;
     private int countArm;
     private int countPre;
+    private int countPixel = 0;
+
+    public void pixelControl(){
+        if(countPixel % 2 != 0 ){
+            pixelServo.setPosition(Servo.MAX_POSITION);
+        } else if(countPixel % 2 == 0 && countPixel != 0){
+            pixelServo.setPosition(Servo.MIN_POSITION);
+        }
+    }
 
 
     //variable that holds the amount of time is running
     private ElapsedTime runtime = new ElapsedTime();
     public void armControl(){
         if(countArm % 2 == 0 && countArm != 0){
-            llSlide.setPower(-0.2);
-            rlSlide.setPower(-0.2);
+            llSlide.setPower(-0.35);
+            rlSlide.setPower(-0.35);
             sleep(300);
         } else if (countArm % 2 != 0) {
-            llSlide.setPower(0.2);
-            rlSlide.setPower(0.2);
+            llSlide.setPower(0.35);
+            rlSlide.setPower(0.35);
             sleep(300);
         }
     }
@@ -68,8 +79,8 @@ public class MarioKart extends LinearOpMode {
         } else if (countPre % 2 == 0 && countPre != 0) {
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(-0.25);
-            rlSlide.setPower(-0.25);
+            llSlide.setPower(-0.35);
+            rlSlide.setPower(-0.35);
             sleep(500);
             arm.setPosition(0.5);
             sleep(1000);
@@ -137,7 +148,7 @@ public class MarioKart extends LinearOpMode {
             max = Math.max(max, Math.abs(leftBackPower));
             max = Math.max(max, Math.abs(rightBackPower));
 
-            if (max > 1.0) {
+            if (max > 1.5) {
                 leftFrontPower  /= max;
                 rightFrontPower /= max;
                 leftBackPower   /= max;
@@ -158,7 +169,7 @@ public class MarioKart extends LinearOpMode {
             telemetry.addData("Front left/Right", "%4.2f, %4.2f", leftFrontPower, rightFrontPower);
             telemetry.addData("Back  left/Right", "%4.2f, %4.2f", leftBackPower, rightBackPower);
             telemetry.update();
-            pixelServo.setPosition(Servo.MAX_POSITION);
+            pixelServo.setPosition(Servo.MIN_POSITION);
 
 
             //Forward brings linear slide up
@@ -185,7 +196,7 @@ public class MarioKart extends LinearOpMode {
                 count++;
                 if (count % 2 != 0) {
                     intake.setDirection(DcMotorSimple.Direction.REVERSE);
-                    intake.setPower(1);
+                    intake.setPower(0.8);
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
                 } else {
@@ -194,11 +205,11 @@ public class MarioKart extends LinearOpMode {
                 }
             }
 
-            if(gamepad1.right_bumper){
+            if(gamepad2.right_bumper){
                 box.setPosition(Servo.MAX_POSITION);
             }
 
-            if(gamepad1.left_bumper){
+            if(gamepad2.left_bumper){
                 box.setPosition(Servo.MIN_POSITION);
             }
 
@@ -219,6 +230,10 @@ public class MarioKart extends LinearOpMode {
             if(gamepad1.x){
                 countArm++;
                 armControl();
+            }
+            if(gamepad2.x){
+                countPixel++;
+                pixelControl();
             }
 
 
