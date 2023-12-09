@@ -18,6 +18,10 @@ public class GavinoAutoII extends LinearOpMode {
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
+
+    //private DcMotor llSlide = null;
+
+    //private DcMotor rlSlide = null;
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
     public Servo boxServo = null;
@@ -286,6 +290,41 @@ public class GavinoAutoII extends LinearOpMode {
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
 
+    /*
+    public void attempt() {
+        //The first time this method is called and every other time after it should preset the arm and servo to dropping position
+        if (countPre % 2 != 0) {
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setPower(0.25);
+            rlSlide.setPower(0.25);
+            sleep(300);
+            arm.setPosition(Servo.MIN_POSITION);
+            sleep(500);
+            llSlide.setPower(1.3);
+            rlSlide.setPower(1.3);
+            sleep(500);
+            llSlide.setPower(0);
+            rlSlide.setPower(0);
+        //The second time this method is called and every other time after it should preset the arm and servo to receiving position
+        } else if (countPre % 2 == 0 && countPre != 0) {
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setPower(-0.35);
+            rlSlide.setPower(-0.35);
+            sleep(500);
+            arm.setPosition(0.5);
+            sleep(1000);
+            llSlide.setPower(-1.5);
+            rlSlide.setPower(-1.);
+            sleep(1000);
+            llSlide.setPower(0);
+            rlSlide.setPower(0);
+        }
+    }
+
+     */
+
     public void markerDetection() {
         sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
@@ -350,9 +389,18 @@ public class GavinoAutoII extends LinearOpMode {
         //sleep(500);
         DRIVE_DISTANCE_RIGHT(28f);
         sleep(500);
-        TURN(1,20);
-        //DRIVE_DISTANCE_FORWARD(20f,0.8);
+        TURN(-1,20);
+        //Add linear slide
+        sleep(100);
+        DRIVE_DISTANCE_FORWARD(-5f,0.8);
         sleep(500);
+        //Release
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(3f,0.8);
+        //Linear slide down
+        DRIVE_DISTANCE_RIGHT(27);
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(-14,1);
     }
 
     @Override
