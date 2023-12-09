@@ -394,10 +394,10 @@ public class GavinoAutoBlue extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(-32,1);
             sleep(2000);
             markerDetection();
-            DRIVE_DISTANCE_FORWARD(28,1.2);
-            DRIVE_DISTANCE_LEFT(20.4f);
-            DRIVE_DISTANCE_FORWARD(-24,1.2);
-            TURN(1,20);
+            //DRIVE_DISTANCE_FORWARD(28,1.2);
+            //DRIVE_DISTANCE_LEFT(20.4f);
+            //DRIVE_DISTANCE_FORWARD(-24,1.2);
+            //TURN(1,20);
 
             //move arm to place pixel
         }
