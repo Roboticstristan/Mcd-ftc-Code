@@ -378,10 +378,10 @@ public class GavinoAutoII extends LinearOpMode {
         if (opModeIsActive()) {
             DRIVE_DISTANCE_FORWARD(32,1);
             markerDetection();
-            DRIVE_DISTANCE_FORWARD(28,1.2);
-            DRIVE_DISTANCE_RIGHT(20.4f);
-            DRIVE_DISTANCE_FORWARD(-24,1.2);
-            TURN(1,20);
+            //DRIVE_DISTANCE_FORWARD(28,1.2);
+            //DRIVE_DISTANCE_RIGHT(20.4f);
+            //DRIVE_DISTANCE_FORWARD(-24,1.2);
+            //TURN(1,20);
         }
         sleep(1000);
     }
