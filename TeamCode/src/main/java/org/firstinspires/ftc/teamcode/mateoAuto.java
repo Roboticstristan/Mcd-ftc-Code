@@ -415,9 +415,9 @@ public class mateoAuto extends LinearOpMode {
             llSlide.setPower(0);
             rlSlide.setPower(0);
             sleep(1000);
-            llSlide.setPower(0.25);
-            rlSlide.setPower(0.25);
-            sleep(2000);
+            llSlide.setPower(0.5);
+            rlSlide.setPower(0.5);
+            sleep(3000);
             llSlide.setPower(0);
             rlSlide.setPower(0);
         }
