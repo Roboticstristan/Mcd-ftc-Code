@@ -244,6 +244,12 @@ public class MarioKart extends LinearOpMode {
                 countPixel++;
                 pixelControl();
             }
+            if(gamepad2.right_trigger > 0){
+                arm.setPosition(arm.getPosition() + 1);
+            }
+            if(gamepad2.left_trigger > 0){
+                arm.setPosition(arm.getPosition() - 1);
+            }
 
 
 
