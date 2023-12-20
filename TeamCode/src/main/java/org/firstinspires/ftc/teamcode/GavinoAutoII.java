@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name="dont use this either", group="Auto2022")
+@Autonomous(name="ImprovingAuto", group="Auto2022")
 public class GavinoAutoII extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -329,7 +329,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
-            DRIVE_DISTANCE_FORWARD(2,1);
+            DRIVE_DISTANCE_FORWARD(8.1f,1);
             sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
@@ -341,6 +341,22 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(1000);
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(20,0.7);
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(32);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-38,0.75);
+            sleep(750);
+            TURN(-1,20);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(3f,0.8);
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(25);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-22,1);
+
+
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
@@ -357,9 +373,14 @@ public class GavinoAutoII extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            // Turn back to face original starting position
+            DRIVE_DISTANCE_FORWARD(-2,1);
+            sleep(760);
             TURN(1, 20f);
+            sleep(740);
+            // turning to set up circumnavigate
             circumnavigate();
+            // Turn back to face original starting position
+
             // The final iteration which is the third option so only requires an else; not an else if
         } else {    // Runs following code only if block neither on right or left
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
@@ -400,7 +421,7 @@ public class GavinoAutoII extends LinearOpMode {
         //Linear slide down
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(-14,1);
+        DRIVE_DISTANCE_FORWARD(-18,1);
     }
 
     @Override
@@ -443,6 +464,7 @@ public class GavinoAutoII extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(-32,0.8);
             sleep(2000);
             markerDetection();
+          //  circumnavigate();
             //DRIVE_DISTANCE_FORWARD(28,1.2);
             //DRIVE_DISTANCE_RIGHT(20.4f);
             //DRIVE_DISTANCE_FORWARD(-24,1.2);

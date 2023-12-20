@@ -209,7 +209,7 @@ public class MarioKart extends LinearOpMode {
                 count++;
                 if (count % 2 != 0) {
                     intake.setDirection(DcMotorSimple.Direction.REVERSE);
-                    intake.setPower(0.6);
+                    intake.setPower(0.8);
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
                 } else {
