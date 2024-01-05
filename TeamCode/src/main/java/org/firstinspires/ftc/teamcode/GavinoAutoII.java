@@ -268,8 +268,8 @@ public class GavinoAutoII extends LinearOpMode {
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         } else {
             //go down
-            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            rlSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         }
 
         llSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -331,7 +331,7 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(750);
             DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
-            //place
+            place();
             sleep(750);
             DRIVE_DISTANCE_RIGHT(25);
             sleep(750);
@@ -395,13 +395,20 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
         sleep(750);
-        LINEAR_SLIDE_DRIVE(12,0.5);
+        LINEAR_SLIDE_DRIVE(4,0.5);
         sleep(750);
         boxServo.setPosition(Servo.MIN_POSITION);
         sleep(750);
+        DRIVE_DISTANCE_FORWARD(8,-0.5);
         boxServo.setPosition(Servo.MAX_POSITION);
         sleep(1000);
-        LINEAR_SLIDE_DRIVE(7.32f,0.5);
+        DRIVE_DISTANCE_FORWARD(8,0.5);
+        boxServo.setPosition(Servo.MIN_POSITION);
+        LINEAR_SLIDE_DRIVE(4,-0.5);
+        sleep(500);
+        armServo.setPosition(Servo.MAX_POSITION);
+        sleep(1000);
+
     }
     public void circumnavigate(){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
@@ -416,7 +423,7 @@ public class GavinoAutoII extends LinearOpMode {
         //Release
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
-        //Linear slide down
+        place();
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(-18,1);
