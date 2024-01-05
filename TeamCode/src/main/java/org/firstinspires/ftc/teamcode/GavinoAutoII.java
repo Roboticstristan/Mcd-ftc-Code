@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name="dont use this either", group="Auto2022")
+@Autonomous(name="ImprovingAuto", group="Auto2022")
 public class GavinoAutoII extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -18,6 +18,10 @@ public class GavinoAutoII extends LinearOpMode {
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
+
+    //private DcMotor llSlide = null;
+
+    //private DcMotor rlSlide = null;
     private DistanceSensor sensorRange1;
     private DistanceSensor sensorRange2;
     public Servo boxServo = null;
@@ -286,57 +290,138 @@ public class GavinoAutoII extends LinearOpMode {
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
 
-    public void markerDetection() {
-        //20 inches is 90 degrees
-        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
+    /*
+    public void attempt() {
+        //The first time this method is called and every other time after it should preset the arm and servo to dropping position
+        if (countPre % 2 != 0) {
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setPower(0.25);
+            rlSlide.setPower(0.25);
+            sleep(300);
+            arm.setPosition(Servo.MIN_POSITION);
+            sleep(500);
+            llSlide.setPower(1.3);
+            rlSlide.setPower(1.3);
+            sleep(500);
+            llSlide.setPower(0);
+            rlSlide.setPower(0);
+        //The second time this method is called and every other time after it should preset the arm and servo to receiving position
+        } else if (countPre % 2 == 0 && countPre != 0) {
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setPower(-0.35);
+            rlSlide.setPower(-0.35);
+            sleep(500);
+            arm.setPosition(0.5);
+            sleep(1000);
+            llSlide.setPower(-1.5);
+            rlSlide.setPower(-1.);
+            sleep(1000);
+            llSlide.setPower(0);
+            rlSlide.setPower(0);
+        }
+    }
 
-            telemetry.addData("Block Placement:", "Right");
-            TURN(1, 20f);
-            sleep(1000);
-            pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(1500);
+     */
+
+    public void markerDetection() {
+        sleep(500);
+        if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
+            telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
+            DRIVE_DISTANCE_FORWARD(8.1f,1);
+            sleep(500);
+            TURN(1, 20f);   // Turning to the right 90 degrees
+            sleep(1000);    // Wait 1 second
+            pixelServo.setPosition(Servo.MAX_POSITION); // Places the pixel
+            sleep(1500);    // Wait 1.5 seconds
+            //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // Waiting a second so that the servo is out of way before moving
             sleep(1000);
-            TURN(1,40f);
-            circumnavigate();
-        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {
-            telemetry.addData("Block Placement:", "Left");
+            // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(20,0.7);
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(32);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-38,0.75);
+            sleep(750);
+            TURN(-1,20);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(3f,0.8);
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(25);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-22,1);
+
+
+            // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
+        } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
+            // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
+            telemetry.addData("Block Placement:", "Right");
+            // Turn left to face alliance marker
+            TURN(-1, 20f);
+            // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
+            // Drop the pixel off of the servo
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
+            sleep(1500);
+            // Verify the mechanism is at top by re-setting it to max position
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            DRIVE_DISTANCE_RIGHT(24f);
-            sleep(500);
-            DRIVE_DISTANCE_FORWARD(40f,1);
-            sleep(500);
-            DRIVE_DISTANCE_LEFT(24f);
-            sleep(500);
-            DRIVE_DISTANCE_RIGHT(24f);
-            sleep(500);
-            DRIVE_DISTANCE_FORWARD(5f,1);
-        } else {
+            DRIVE_DISTANCE_FORWARD(-2,1);
+            sleep(760);
+            TURN(1, 20f);
+            sleep(740);
+            // turning to set up circumnavigate
+            circumnavigate();
+            // Turn back to face original starting position
+
+            // The final iteration which is the third option so only requires an else; not an else if
+        } else {    // Runs following code only if block neither on right or left
+            // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
+            // Turn 180 degrees to have the front of the robot facing the team prop assigned line
+            DRIVE_DISTANCE_FORWARD(4,1);
             TURN(-1, 40f);
+            // Wait 1 second for efficiency
             sleep(1000);
+            // As before, set the servo to outward position so that the pixel can drop
             pixelServo.setPosition(Servo.MAX_POSITION);
-            sleep(500);
+            // Wait 1.5 seconds to ensure pixel fall out properly
+            sleep(1500);
+            //Sets back to og position.
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // Wait 1 second
             sleep(1000);
-            TURN(1, 20);
-            sleep(1000);
+            // Turn to face original
+            TURN(1, 40f);
+            DRIVE_DISTANCE_FORWARD(-4,1);
             circumnavigate();
         }
     }
 
     public void circumnavigate(){
-        DRIVE_DISTANCE_FORWARD(26f,0.8);
-        sleep(500);
+        //DRIVE_DISTANCE_FORWARD(26f,0.8);
+        //sleep(500);
         DRIVE_DISTANCE_RIGHT(28f);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(20f,0.8);
+        TURN(-1,20);
+        //Add linear slide
+        sleep(100);
+        DRIVE_DISTANCE_FORWARD(-5f,0.8);
         sleep(500);
+        //Release
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(3f,0.8);
+        //Linear slide down
+        DRIVE_DISTANCE_RIGHT(27);
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(-18,1);
     }
 
     @Override
@@ -376,8 +461,10 @@ public class GavinoAutoII extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(32,1);
+            DRIVE_DISTANCE_FORWARD(-32,0.8);
+            sleep(2000);
             markerDetection();
+          //  circumnavigate();
             //DRIVE_DISTANCE_FORWARD(28,1.2);
             //DRIVE_DISTANCE_RIGHT(20.4f);
             //DRIVE_DISTANCE_FORWARD(-24,1.2);

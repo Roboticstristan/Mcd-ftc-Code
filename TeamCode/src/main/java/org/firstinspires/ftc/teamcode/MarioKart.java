@@ -22,6 +22,7 @@ public class MarioKart extends LinearOpMode {
     private DcMotor intake = null;
     private Servo box = null;
     private Servo arm = null;
+    private Servo droneServo = null;
 
 
     private
@@ -37,6 +38,7 @@ public class MarioKart extends LinearOpMode {
     private int countArm;
     private int countPre;
     private int countPixel = 0;
+    private int droneCount = 0;
 
     public void pixelControl(){
         sleep(500);
@@ -112,6 +114,7 @@ public class MarioKart extends LinearOpMode {
         box = hardwareMap.get(Servo.class, "box");
         arm = hardwareMap.get(Servo.class, "arm");
         pixelServo = hardwareMap.get(Servo.class, "pixelServo");
+        droneServo = hardwareMap.get(Servo.class, "droneServo");
 
         backLeft.setDirection(DcMotor.Direction.REVERSE);
         backRight.setDirection(DcMotor.Direction.FORWARD);
@@ -127,6 +130,7 @@ public class MarioKart extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         arm.setPosition(0.5);
         pixelServo.setPosition(Servo.MAX_POSITION);
+        droneServo.setPosition(Servo.MIN_POSITION);
         waitForStart();
         runtime.reset();
 
@@ -205,7 +209,7 @@ public class MarioKart extends LinearOpMode {
                 count++;
                 if (count % 2 != 0) {
                     intake.setDirection(DcMotorSimple.Direction.REVERSE);
-                    intake.setPower(0.6);
+                    intake.setPower(0.8);
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
                 } else {
@@ -240,9 +244,18 @@ public class MarioKart extends LinearOpMode {
                 countArm++;
                 armControl();
             }
-            if(gamepad1.a){
+            if(gamepad2.a){
                 countPixel++;
                 pixelControl();
+            }
+            if(gamepad2.right_trigger > 0){
+                arm.setPosition(arm.getPosition() + 1);
+            }
+            if(gamepad2.left_trigger > 0){
+                arm.setPosition(arm.getPosition() - 1);
+            }
+            if(gamepad2.b){
+                droneServo.setPosition(Servo.MAX_POSITION);
             }
 
 
