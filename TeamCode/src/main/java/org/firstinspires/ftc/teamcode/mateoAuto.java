@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 @Autonomous(name="Peru", group="Auto2022")
 public class mateoAuto extends LinearOpMode {
     // Declare OpMode members.
-    public static final double gravCo = 0.61;
+    public static final long gravCo = 0.61;
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
     private DcMotor frontLeft = null;
@@ -424,7 +424,7 @@ public class mateoAuto extends LinearOpMode {
             sleep(10000);
             llSlide.setPower(-0.5);
             rlSlide.setPower(-0.5);
-            sleep((long) (3000 * gravCo));
+            sleep(3000 * gravCo));
             llSlide.setPower(0.09);
             rlSlide.setPower(0.09);
             sleep(60000);
