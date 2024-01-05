@@ -2,38 +2,34 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name="Peru", group="Auto2022")
-public class mateoAuto extends LinearOpMode {
+@Autonomous(name="Lima", group="Auto2022")
+public class twoMateo2Auto extends LinearOpMode {
     // Declare OpMode members.
-    public static final double gravCo = 0.61;
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontRight = null;
     private DcMotor frontLeft = null;
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
-    private DistanceSensor sensorRange1;
-    private DistanceSensor sensorRange2;
 
-    public Servo boxServo = null;
-    public Servo pixelServo = null;
     private DcMotor llSlide = null;
     private DcMotor rlSlide = null;
-    private Servo arm = null;
-    static final double INCREMENT   = 0.25;     // amount to slew servo each CYCLE_MS cycle
-    static final int    CYCLE_MS    =   50;     // period of each cycle
-    public double ServoMax = 0.5;
-    public double ServoMin = 0;
 
+    //private DcMotor llSlide = null;
 
-
+    //private DcMotor rlSlide = null;
+    private DistanceSensor sensorRange1;
+    private DistanceSensor sensorRange2;
+    public Servo boxServo = null;
+    public Servo pixelServo = null;
+    public Servo armServo = null;
 
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
@@ -259,7 +255,6 @@ public class mateoAuto extends LinearOpMode {
 
     }
 
-    /*
     public void LINEAR_SLIDE_DRIVE(float distance_in_in, double power) {
         float ticksPerInch = 450.149432158f;
         float f_ticks = ticksPerInch * distance_in_in;
@@ -269,43 +264,52 @@ public class mateoAuto extends LinearOpMode {
         //450.149432158 ticks per in
         if (power > 0) {
             //go up
-            linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         } else {
             //go down
-            linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         }
 
-        linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setPower(power);
-        linearSlide.setTargetPosition(ticks);
-        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        llSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        llSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        llSlide.setPower(power);
+        llSlide.setTargetPosition(ticks);
+        llSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rlSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rlSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rlSlide.setPower(power);
+        rlSlide.setTargetPosition(ticks);
+        rlSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         telemetry.addData("slide", "> is running to position");
         telemetry.update();
-        while (linearSlide.getCurrentPosition() <= (linearSlide.getTargetPosition() - 50)) {
+        while (rlSlide.getCurrentPosition() <= (rlSlide.getTargetPosition() - 50) && llSlide.getCurrentPosition() <= (llSlide.getTargetPosition() - 50)) {
             //Wait until job is finished
             telemetry.addData("slide", "> is strafing to position");
-            telemetry.addData("ticks", ">" + linearSlide.getCurrentPosition() + " need to get to " + linearSlide.getTargetPosition());
+            telemetry.addData("ticks", ">" + rlSlide.getCurrentPosition() + " need to get to " + rlSlide.getTargetPosition());
+            telemetry.addData("slide", "> is strafing to position");
+            telemetry.addData("ticks", ">" + llSlide.getCurrentPosition() + " need to get to " + llSlide.getTargetPosition());
             telemetry.update();
         }
     }
-     */
+
 
     //  public void getData() {
     //     sensorRange1.getDistance(DistanceUnit.CM);
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
-    //20 inches is 90 degrees
-    // 20 in = turn right
-    //-20 in = turn left
+
+
 
 
     public void markerDetection() {
         sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
-            DRIVE_DISTANCE_FORWARD(2,1);
+            telemetry.addData("Block Distance Away:", sensorRange1.getDistance(DistanceUnit.CM));
+            DRIVE_DISTANCE_FORWARD(8.1f,1);
             sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
@@ -317,10 +321,29 @@ public class mateoAuto extends LinearOpMode {
             sleep(1000);
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(20,0.7);
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(32);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-38,0.75);
+            sleep(750);
+            TURN(-1,20);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(3f,0.8);
+            sleep(750);
+            //place
+            sleep(750);
+            DRIVE_DISTANCE_RIGHT(25);
+            sleep(750);
+            DRIVE_DISTANCE_FORWARD(-22,1);
+
+
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
+            telemetry.addData("Block Distance Away:", sensorRange2.getDistance(DistanceUnit.CM));
             // Turn left to face alliance marker
             TURN(-1, 20f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
@@ -333,8 +356,14 @@ public class mateoAuto extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            // Turn back to face original starting position
+            DRIVE_DISTANCE_FORWARD(-2,1);
+            sleep(760);
             TURN(1, 20f);
+            sleep(740);
+            // turning to set up circumnavigate
+            circumnavigate();
+            // Turn back to face original starting position
+
             // The final iteration which is the third option so only requires an else; not an else if
         } else {    // Runs following code only if block neither on right or left
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
@@ -355,7 +384,44 @@ public class mateoAuto extends LinearOpMode {
             // Turn to face original
             TURN(1, 40f);
             DRIVE_DISTANCE_FORWARD(-4,1);
+            circumnavigate();
         }
+    }
+
+    public void place(){
+        llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        sleep(300);
+        llSlide.setPower(0.25);
+        rlSlide.setPower(0.25);
+        sleep(300);
+        armServo.setPosition(Servo.MIN_POSITION);
+        sleep(750);
+        LINEAR_SLIDE_DRIVE(12,0.5);
+        sleep(750);
+        boxServo.setPosition(Servo.MIN_POSITION);
+        sleep(750);
+        boxServo.setPosition(Servo.MAX_POSITION);
+        sleep(1000);
+        LINEAR_SLIDE_DRIVE(7.32f,0.5);
+    }
+    public void circumnavigate(){
+        //DRIVE_DISTANCE_FORWARD(26f,0.8);
+        //sleep(500);
+        DRIVE_DISTANCE_RIGHT(28f);
+        sleep(500);
+        TURN(-1,20);
+        //Add linear slide
+        sleep(100);
+        DRIVE_DISTANCE_FORWARD(-5f,0.8);
+        sleep(500);
+        //Release
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(3f,0.8);
+        //Linear slide down
+        DRIVE_DISTANCE_RIGHT(27);
+        sleep(500);
+        DRIVE_DISTANCE_FORWARD(-18,1);
     }
 
     @Override
@@ -373,12 +439,12 @@ public class mateoAuto extends LinearOpMode {
         sensorRange1 = hardwareMap.get(DistanceSensor.class, "left_Distance");
         sensorRange2 = hardwareMap.get(DistanceSensor.class, "right_Distance");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
-        //colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_colorb");
-        pixelServo = hardwareMap.get(Servo.class, "pixelServo");
-        boxServo = hardwareMap.get(Servo.class, "box");
-        arm = hardwareMap.get(Servo.class, "arm");
         llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
         rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
+        pixelServo = hardwareMap.get(Servo.class, "pixelServo");
+        boxServo = hardwareMap.get(Servo.class, "box");
+        armServo = hardwareMap.get(Servo.class,"arm");
+
 
 
 
@@ -390,46 +456,26 @@ public class mateoAuto extends LinearOpMode {
         runtime.reset();
          */
         pixelServo.setPosition(Servo.MIN_POSITION);
-        arm.setPosition(Servo.MAX_POSITION);
+        armServo.setPosition(Servo.MAX_POSITION);
         waitForStart();
         runtime.reset();
 
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(0.25);
-            rlSlide.setPower(0.25);
-            sleep(300);
-            arm.setPosition(Servo.MIN_POSITION);
-            sleep(500);
-            llSlide.setPower(1.3);
-            rlSlide.setPower(1.3);
-            sleep(500);
-            llSlide.setPower(0.09);
-            rlSlide.setPower(0.09);
-            sleep(1000);
-            llSlide.setPower(-1);
-            rlSlide.setPower(-1);
-            sleep(450);
-            llSlide.setPower(0);
-            rlSlide.setPower(0);
-            sleep(1000);
-            llSlide.setPower(0.5);
-            rlSlide.setPower(0.5);
-            sleep(3000);
-            llSlide.setPower(0.09);
-            rlSlide.setPower(0.09);
-            sleep(10000);
-            llSlide.setPower(-0.5);
-            rlSlide.setPower(-0.5);
-            sleep((long)(3000 * gravCo));
-            llSlide.setPower(0.09);
-            rlSlide.setPower(0.09);
-            sleep(60000);
+            DRIVE_DISTANCE_FORWARD(-32,0.8);
+            sleep(2000);
+            markerDetection();
+            //  circumnavigate();
+            //DRIVE_DISTANCE_FORWARD(28,1.2);
+            //DRIVE_DISTANCE_RIGHT(20.4f);
+            //DRIVE_DISTANCE_FORWARD(-24,1.2);
+            //TURN(1,20);
         }
+        sleep(1000);
     }
+
+//Tristan is smelly
 }
 
 
