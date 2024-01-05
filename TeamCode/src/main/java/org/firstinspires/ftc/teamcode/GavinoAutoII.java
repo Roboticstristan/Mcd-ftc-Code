@@ -19,6 +19,9 @@ public class GavinoAutoII extends LinearOpMode {
     private DcMotor backRight = null;
     private DcMotor backLeft = null;
 
+    private DcMotor llSlide = null;
+    private DcMotor rlSlide = null;
+
     //private DcMotor llSlide = null;
 
     //private DcMotor rlSlide = null;
@@ -252,7 +255,6 @@ public class GavinoAutoII extends LinearOpMode {
 
     }
 
-    /*
     public void LINEAR_SLIDE_DRIVE(float distance_in_in, double power) {
         float ticksPerInch = 450.149432158f;
         float f_ticks = ticksPerInch * distance_in_in;
@@ -262,68 +264,45 @@ public class GavinoAutoII extends LinearOpMode {
         //450.149432158 ticks per in
         if (power > 0) {
             //go up
-            linearSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         } else {
             //go down
-            linearSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         }
 
-        linearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        linearSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        linearSlide.setPower(power);
-        linearSlide.setTargetPosition(ticks);
-        linearSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        llSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        llSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        llSlide.setPower(power);
+        llSlide.setTargetPosition(ticks);
+        llSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rlSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rlSlide.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rlSlide.setPower(power);
+        rlSlide.setTargetPosition(ticks);
+        rlSlide.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         telemetry.addData("slide", "> is running to position");
         telemetry.update();
-        while (linearSlide.getCurrentPosition() <= (linearSlide.getTargetPosition() - 50)) {
+        while (rlSlide.getCurrentPosition() <= (rlSlide.getTargetPosition() - 50) && llSlide.getCurrentPosition() <= (llSlide.getTargetPosition() - 50)) {
             //Wait until job is finished
             telemetry.addData("slide", "> is strafing to position");
-            telemetry.addData("ticks", ">" + linearSlide.getCurrentPosition() + " need to get to " + linearSlide.getTargetPosition());
+            telemetry.addData("ticks", ">" + rlSlide.getCurrentPosition() + " need to get to " + rlSlide.getTargetPosition());
+            telemetry.addData("slide", "> is strafing to position");
+            telemetry.addData("ticks", ">" + llSlide.getCurrentPosition() + " need to get to " + llSlide.getTargetPosition());
             telemetry.update();
         }
     }
-     */
+
 
     //  public void getData() {
     //     sensorRange1.getDistance(DistanceUnit.CM);
     //  sensorRange2.getDistance(DistanceUnit.CM);
     //  }
 
-    /*
-    public void attempt() {
-        //The first time this method is called and every other time after it should preset the arm and servo to dropping position
-        if (countPre % 2 != 0) {
-            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(0.25);
-            rlSlide.setPower(0.25);
-            sleep(300);
-            arm.setPosition(Servo.MIN_POSITION);
-            sleep(500);
-            llSlide.setPower(1.3);
-            rlSlide.setPower(1.3);
-            sleep(500);
-            llSlide.setPower(0);
-            rlSlide.setPower(0);
-        //The second time this method is called and every other time after it should preset the arm and servo to receiving position
-        } else if (countPre % 2 == 0 && countPre != 0) {
-            llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
-            rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
-            llSlide.setPower(-0.35);
-            rlSlide.setPower(-0.35);
-            sleep(500);
-            arm.setPosition(0.5);
-            sleep(1000);
-            llSlide.setPower(-1.5);
-            rlSlide.setPower(-1.);
-            sleep(1000);
-            llSlide.setPower(0);
-            rlSlide.setPower(0);
-        }
-    }
 
-     */
+
 
     public void markerDetection() {
         sleep(500);
@@ -351,6 +330,8 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(-1,20);
             sleep(750);
             DRIVE_DISTANCE_FORWARD(3f,0.8);
+            sleep(750);
+            //place
             sleep(750);
             DRIVE_DISTANCE_RIGHT(25);
             sleep(750);
@@ -405,6 +386,23 @@ public class GavinoAutoII extends LinearOpMode {
         }
     }
 
+    public void place(){
+        llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
+        rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
+        sleep(300);
+        llSlide.setPower(0.25);
+        rlSlide.setPower(0.25);
+        sleep(300);
+        armServo.setPosition(Servo.MIN_POSITION);
+        sleep(750);
+        LINEAR_SLIDE_DRIVE(12,0.5);
+        sleep(750);
+        boxServo.setPosition(Servo.MIN_POSITION);
+        sleep(750);
+        boxServo.setPosition(Servo.MAX_POSITION);
+        sleep(1000);
+        LINEAR_SLIDE_DRIVE(7.32f,0.5);
+    }
     public void circumnavigate(){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
         //sleep(500);
@@ -439,6 +437,8 @@ public class GavinoAutoII extends LinearOpMode {
         sensorRange1 = hardwareMap.get(DistanceSensor.class, "left_Distance");
         sensorRange2 = hardwareMap.get(DistanceSensor.class, "right_Distance");
         //linearSlide = hardwareMap.get(DcMotor.class, "linear_slide");
+        llSlide = hardwareMap.get(DcMotor.class, "leftlinear_slide");
+        rlSlide = hardwareMap.get(DcMotor.class, "rightlinear_slide");
         pixelServo = hardwareMap.get(Servo.class, "pixelServo");
         boxServo = hardwareMap.get(Servo.class, "box");
         armServo = hardwareMap.get(Servo.class,"arm");
