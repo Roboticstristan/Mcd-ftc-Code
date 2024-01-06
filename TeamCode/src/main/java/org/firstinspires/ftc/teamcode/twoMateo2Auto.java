@@ -309,6 +309,7 @@ public class twoMateo2Auto extends LinearOpMode {
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
             telemetry.addData("Block Distance Away:", sensorRange1.getDistance(DistanceUnit.CM));
+            telemetry.update();
             DRIVE_DISTANCE_FORWARD(8.1f,1);
             sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
@@ -344,6 +345,7 @@ public class twoMateo2Auto extends LinearOpMode {
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
             telemetry.addData("Block Distance Away:", sensorRange2.getDistance(DistanceUnit.CM));
+            telemetry.update();
             // Turn left to face alliance marker
             TURN(-1, 20f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
