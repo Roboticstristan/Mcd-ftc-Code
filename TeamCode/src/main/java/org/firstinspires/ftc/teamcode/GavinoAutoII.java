@@ -330,6 +330,7 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(-1,20);
             sleep(750);
             DRIVE_DISTANCE_FORWARD(3f,0.8);
+            DRIVE_DISTANCE_RIGHT(5.275f); //Newly Added Code
             sleep(750);
             place();
             sleep(750);
@@ -359,7 +360,7 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(1, 20f);
             sleep(740);
             // turning to set up circumnavigate
-            circumnavigate();
+            circumnavigate(1);
             // Turn back to face original starting position
 
             // The final iteration which is the third option so only requires an else; not an else if
@@ -382,7 +383,7 @@ public class GavinoAutoII extends LinearOpMode {
             // Turn to face original
             TURN(1, 40f);
             DRIVE_DISTANCE_FORWARD(-4,1);
-            circumnavigate();
+            circumnavigate(0);
         }
     }
 
@@ -410,7 +411,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(1000);
 
     }
-    public void circumnavigate(){
+    public void circumnavigate(int pplace){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
         //sleep(500);
         DRIVE_DISTANCE_FORWARD(-4,1);
@@ -425,6 +426,9 @@ public class GavinoAutoII extends LinearOpMode {
         //Release
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
+        if (pplace == 1){
+            DRIVE_DISTANCE_LEFT(5.275f); //Newly Added Code
+        }
         place();
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
