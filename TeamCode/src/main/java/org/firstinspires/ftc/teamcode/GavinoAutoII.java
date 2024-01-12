@@ -321,7 +321,7 @@ public class GavinoAutoII extends LinearOpMode {
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
             sleep(750);
-            DRIVE_DISTANCE_FORWARD(20,0.7);
+            DRIVE_DISTANCE_FORWARD(15,0.7);
             sleep(750);
             DRIVE_DISTANCE_RIGHT(32);
             sleep(750);
