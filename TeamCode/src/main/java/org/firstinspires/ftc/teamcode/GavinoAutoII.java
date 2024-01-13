@@ -324,9 +324,9 @@ public class GavinoAutoII extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(15,0.7);
             sleep(600);
             DRIVE_DISTANCE_RIGHT(32);
-            sleep(600);
-            DRIVE_DISTANCE_FORWARD(-33f,0.75);
-            //This is 38 - 5.3 which takes away time
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(-37.5f,0.75);
+            //This is 38 - 5.3 which takes away time *** we added changes
             sleep(400);
             TURN(-1,20);
             sleep(750);
@@ -408,12 +408,15 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         //boxServo.setPosition(Servo.MIN_POSITION);
         DRIVE_DISTANCE_FORWARD(-10,0.7);
-        boxServo.setPosition(Servo.MAX_POSITION / 2);
+        sleep(500);
+        boxServo.setPosition(Servo.MIN_POSITION);
         //Check to see if servo can get pixel to drop by backing up a little
         sleep(1000);
         DRIVE_DISTANCE_FORWARD(10,0.7);
-        boxServo.setPosition(Servo.MIN_POSITION);
-        LINEAR_SLIDE_DRIVE(-4,0.5);
+        sleep(500);
+        boxServo.setPosition(Servo.MAX_POSITION / 2);
+        sleep(500);
+        LINEAR_SLIDE_DRIVE(4,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
