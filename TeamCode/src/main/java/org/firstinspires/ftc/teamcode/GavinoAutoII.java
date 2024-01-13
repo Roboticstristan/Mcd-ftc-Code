@@ -339,14 +339,17 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(750);
             DRIVE_DISTANCE_RIGHT(25);
             sleep(750);
-            DRIVE_DISTANCE_FORWARD(-22,1);
-            DRIVE_DISTANCE_FORWARD(-2f,1); // Added movement to park
+            DRIVE_DISTANCE_FORWARD(22,-1);
+            DRIVE_DISTANCE_FORWARD(2f,-1); // Added movement to park
 
 
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
+            //Fix allignment before placing
+            //Drive forword before placing pixel
+            // Put gate up after dropping pixel
             // Turn left to face alliance marker
             TURN(-1, 20f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
@@ -402,18 +405,17 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(750);
         LINEAR_SLIDE_DRIVE(4,0.5);
         sleep(750);
-        boxServo.setPosition(Servo.MIN_POSITION);
-        sleep(750);
-        DRIVE_DISTANCE_FORWARD(8,-0.5);
+        //boxServo.setPosition(Servo.MIN_POSITION);
+        DRIVE_DISTANCE_FORWARD(9,-0.5);
+        sleep(3000);
         boxServo.setPosition(Servo.MAX_POSITION);
-        sleep(1000);
+        sleep(500);
         DRIVE_DISTANCE_FORWARD(8,0.5);
         boxServo.setPosition(Servo.MIN_POSITION);
         LINEAR_SLIDE_DRIVE(4,-0.5);
-        sleep(500);
+        sleep(3000);
         armServo.setPosition(Servo.MAX_POSITION);
-        sleep(1000);
-
+        sleep(200);
     }
     public void circumnavigate(int pplace){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
