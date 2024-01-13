@@ -219,7 +219,7 @@ public class MarioKart extends LinearOpMode {
             }
 
             if(gamepad2.right_bumper){
-                box.setPosition(Servo.MAX_POSITION);
+                box.setPosition(Servo.MAX_POSITION/2);
             }
 
             if(gamepad2.left_bumper){

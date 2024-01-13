@@ -322,25 +322,25 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(-1, 20f);
             sleep(750);
             DRIVE_DISTANCE_FORWARD(15,0.7);
-            sleep(750);
+            sleep(600);
             DRIVE_DISTANCE_RIGHT(32);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(-38,0.75);
-            sleep(750);
+            sleep(600);
+            DRIVE_DISTANCE_FORWARD(-33f,0.75);
+            //This is 38 - 5.3 which takes away time
+            sleep(400);
             TURN(-1,20);
             sleep(750);
-            DRIVE_DISTANCE_FORWARD(3f,0.8);
+            //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
-            sleep(750);
+            //DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
             place();
             sleep(500);
-            DRIVE_DISTANCE_LEFT(5.3f);
+
             sleep(750);
-            DRIVE_DISTANCE_RIGHT(25);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(22,-1);
-            DRIVE_DISTANCE_FORWARD(2f,-1); // Added movement to park
+            DRIVE_DISTANCE_RIGHT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            sleep(400);
+            DRIVE_DISTANCE_FORWARD(22.5f,-1);
+
 
 
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
@@ -395,6 +395,7 @@ public class GavinoAutoII extends LinearOpMode {
     }
 
     public void place(){
+        sleep(200);
         llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         sleep(300);
@@ -402,18 +403,18 @@ public class GavinoAutoII extends LinearOpMode {
         rlSlide.setPower(0.25);
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
-        sleep(750);
-        LINEAR_SLIDE_DRIVE(4,0.5);
-        sleep(750);
-        //boxServo.setPosition(Servo.MIN_POSITION);
-        DRIVE_DISTANCE_FORWARD(9,-0.5);
-        sleep(3000);
-        boxServo.setPosition(Servo.MAX_POSITION);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(8,0.5);
+        LINEAR_SLIDE_DRIVE(4,0.5);
+        sleep(500);
+        //boxServo.setPosition(Servo.MIN_POSITION);
+        DRIVE_DISTANCE_FORWARD(-10,0.7);
+        boxServo.setPosition(Servo.MAX_POSITION / 2);
+        //Check to see if servo can get pixel to drop by backing up a little
+        sleep(1000);
+        DRIVE_DISTANCE_FORWARD(10,0.7);
         boxServo.setPosition(Servo.MIN_POSITION);
-        LINEAR_SLIDE_DRIVE(4,-0.5);
-        sleep(3000);
+        LINEAR_SLIDE_DRIVE(-4,0.5);
+        sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
     }
@@ -442,7 +443,7 @@ public class GavinoAutoII extends LinearOpMode {
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(-18,1);
-        sleep(2000);
+        sleep(500);
         DRIVE_DISTANCE_FORWARD(-5f,1);
     }
 
