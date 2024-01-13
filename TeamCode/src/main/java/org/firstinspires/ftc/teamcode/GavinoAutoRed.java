@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
+//This is far side red
 @Autonomous(name="dontuse", group="Auto2022")
 public class GavinoAutoRed extends LinearOpMode {
     // Declare OpMode members.

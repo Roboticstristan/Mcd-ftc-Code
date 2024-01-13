@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
+//This is board side Blue
 @Autonomous(name="ImprovingAuto", group="Auto2022")
 public class GavinoAutoII extends LinearOpMode {
     // Declare OpMode members.
@@ -330,13 +330,17 @@ public class GavinoAutoII extends LinearOpMode {
             TURN(-1,20);
             sleep(750);
             DRIVE_DISTANCE_FORWARD(3f,0.8);
-            DRIVE_DISTANCE_RIGHT(5.275f); //Newly Added Code
+            sleep(500);
+            DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
             sleep(750);
             place();
+            sleep(500);
+            DRIVE_DISTANCE_LEFT(5.3f);
             sleep(750);
             DRIVE_DISTANCE_RIGHT(25);
             sleep(750);
             DRIVE_DISTANCE_FORWARD(-22,1);
+            DRIVE_DISTANCE_FORWARD(-2f,1); // Added movement to park
 
 
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
@@ -414,7 +418,7 @@ public class GavinoAutoII extends LinearOpMode {
     public void circumnavigate(int pplace){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
         //sleep(500);
-        DRIVE_DISTANCE_FORWARD(-4,1);
+        DRIVE_DISTANCE_FORWARD(4,1);
         sleep(500);
         DRIVE_DISTANCE_RIGHT(28f);
         sleep(500);
@@ -427,12 +431,17 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_LEFT(5.275f); //Newly Added Code
+            DRIVE_DISTANCE_LEFT(5.3f); //Newly Added Code
         }
         place();
+        sleep(500);
+        DRIVE_DISTANCE_RIGHT(5.3f);
+        //sleep(1000);
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(-18,1);
+        sleep(2000);
+        DRIVE_DISTANCE_FORWARD(-5f,1);
     }
 
     @Override
