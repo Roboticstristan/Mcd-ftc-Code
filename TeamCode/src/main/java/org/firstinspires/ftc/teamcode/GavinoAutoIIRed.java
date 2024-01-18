@@ -10,7 +10,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 //This is board side Blue
-@Autonomous(name="RedBoredSide", group="Auto2022")
+//RedBoredSide
+@Autonomous(name="RedBoardSide", group="Auto2022")
 public class GavinoAutoIIRed extends LinearOpMode {
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -30,7 +31,6 @@ public class GavinoAutoIIRed extends LinearOpMode {
     public Servo boxServo = null;
     public Servo pixelServo = null;
     public Servo armServo = null;
-
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -308,7 +308,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
-            DRIVE_DISTANCE_FORWARD(7,1);
+            DRIVE_DISTANCE_FORWARD(7,0.8);
             sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
@@ -316,22 +316,20 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(1500);    // Wait 1.5 seconds
             //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
-            // sleep so that the servo is set up correctly and not poking out
+            // Waiting a second so that the servo is out of way before moving
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-2,1);
-            sleep(760);
-            TURN(1, 20f);
-            sleep(740);
-            // turning to set up circumnavigate
+            // Turn back in the opposite direction with the front facing the starting position again
+            TURN(-1, 20f);
+            sleep(750);
             circumnavigate(1);
-            // Turn back to face original starting position
-
-
 
             // The second scenario within an else if statement that evaluates if the first is false. The distance sensors are checked under these different peramaters
         } else if (sensorRange1.getDistance(DistanceUnit.CM) < sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {   // Runs following code only if block is on the right
             // In this else if statement is true then this telemetry dada will be translated to the phone telling us that the marker is on the right
             telemetry.addData("Block Placement:", "Right");
+            //Fix allignment before placing
+            //Drive forword before placing pixel
+            // Put gate up after dropping pixel
             // Turn left to face alliance marker
             TURN(-1, 20f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
@@ -342,30 +340,31 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(1500);
             // Verify the mechanism is at top by re-setting it to max position
             pixelServo.setPosition(Servo.MIN_POSITION);
+            // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            // Turn back in the opposite direction with the front facing the starting position again
-            TURN(-1, 20f);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(15,0.7);
-            sleep(750);
-            DRIVE_DISTANCE_LEFT(32);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(-38,0.75);
-            sleep(750);
-            TURN(1,20);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(3f,0.8);
+            DRIVE_DISTANCE_FORWARD(-2,1);
+            sleep(760);
+            DRIVE_DISTANCE_LEFT(15);
+            sleep(600);
+            DRIVE_DISTANCE_FORWARD(37.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_LEFT(5.3f); //Newly Added Code
+            DRIVE_DISTANCE_RIGHT(17.5f);
+            //This is 38 - 5.3 which takes away time *** we added changes
+            //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
+            //DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
+            TURN(1,40);
             place();
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(5.3f);
             sleep(750);
-            DRIVE_DISTANCE_LEFT(25);
-            sleep(750);
-            DRIVE_DISTANCE_FORWARD(-22,1);
-            DRIVE_DISTANCE_FORWARD(-2f,1); // Added movement to park
+            DRIVE_DISTANCE_RIGHT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            sleep(400);
+            DRIVE_DISTANCE_FORWARD(22.5f,-1);
+
+
+            // turning to set up circumnavigate
+
+            // Turn back to face original starting position
 
             // The final iteration which is the third option so only requires an else; not an else if
         } else {    // Runs following code only if block neither on right or left
@@ -392,6 +391,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
     }
 
     public void place(){
+        sleep(200);
         llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         sleep(300);
@@ -399,26 +399,28 @@ public class GavinoAutoIIRed extends LinearOpMode {
         rlSlide.setPower(0.25);
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
-        sleep(750);
-        LINEAR_SLIDE_DRIVE(4,0.5);
-        sleep(750);
+        sleep(500);
+        LINEAR_SLIDE_DRIVE(2.3f,0.5);
+        sleep(500);
+        //boxServo.setPosition(Servo.MIN_POSITION);
+        DRIVE_DISTANCE_FORWARD(-10,0.7);
+        sleep(500);
         boxServo.setPosition(Servo.MIN_POSITION);
-        sleep(750);
-        DRIVE_DISTANCE_FORWARD(8,-0.5);
-        boxServo.setPosition(Servo.MAX_POSITION);
+        //Check to see if servo can get pixel to drop by backing up a little
         sleep(1000);
-        DRIVE_DISTANCE_FORWARD(8,0.5);
-        boxServo.setPosition(Servo.MIN_POSITION);
-        LINEAR_SLIDE_DRIVE(4,-0.5);
+        DRIVE_DISTANCE_FORWARD(10,0.7);
+        sleep(500);
+        boxServo.setPosition(Servo.MAX_POSITION / 2);
+        sleep(500);
+        LINEAR_SLIDE_DRIVE(2.1f,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
-        sleep(1000);
-
+        sleep(200);
     }
     public void circumnavigate(int pplace){
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
         //sleep(500);
-        DRIVE_DISTANCE_FORWARD(4,1);
+        DRIVE_DISTANCE_FORWARD(-4,1);
         sleep(500);
         DRIVE_DISTANCE_LEFT(28f);
         sleep(500);
@@ -440,7 +442,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         DRIVE_DISTANCE_LEFT(27);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(-18,1);
-        sleep(2000);
+        sleep(500);
         DRIVE_DISTANCE_FORWARD(-5f,1);
     }
 

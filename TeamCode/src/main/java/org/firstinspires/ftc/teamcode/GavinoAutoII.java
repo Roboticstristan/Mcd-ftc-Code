@@ -308,7 +308,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         if (sensorRange1.getDistance(DistanceUnit.CM) > sensorRange2.getDistance(DistanceUnit.CM) && (sensorRange1.getDistance(DistanceUnit.CM) < 20 || sensorRange2.getDistance(DistanceUnit.CM) < 20)) {  //Runs following code only if the block is on the left
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
-            DRIVE_DISTANCE_FORWARD(7,1);
+            DRIVE_DISTANCE_FORWARD(7,0.8);
             sleep(500);
             TURN(1, 20f);   // Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
@@ -404,7 +404,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(4,0.5);
+        LINEAR_SLIDE_DRIVE(2.3f,0.5);
         sleep(500);
         //boxServo.setPosition(Servo.MIN_POSITION);
         DRIVE_DISTANCE_FORWARD(-10,0.7);
@@ -416,7 +416,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         boxServo.setPosition(Servo.MAX_POSITION / 2);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(4,-0.5);
+        LINEAR_SLIDE_DRIVE(2.1f,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
