@@ -433,7 +433,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_RIGHT(9.1f); //Newly Added Code
+            DRIVE_DISTANCE_RIGHT(9.3f); //Newly Added Code
         }
         place();
         sleep(500);
