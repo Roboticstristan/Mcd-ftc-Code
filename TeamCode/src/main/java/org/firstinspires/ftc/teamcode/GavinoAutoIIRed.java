@@ -385,7 +385,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(1000);
             // Turn to face original
             TURN(1, 40f);
-            DRIVE_DISTANCE_FORWARD(-4,1);
+            DRIVE_DISTANCE_FORWARD(4,1);
             circumnavigate(0);
         }
     }
