@@ -332,6 +332,10 @@ public class GavinoAutoIIRed extends LinearOpMode {
             // Put gate up after dropping pixel
             // Turn left to face alliance marker
             TURN(-1, 20f);
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(6,1);
+            DRIVE_DISTANCE_FORWARD(6,-1);
+            DRIVE_DISTANCE_LEFT(3);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
             // Drop the pixel off of the servo
@@ -357,7 +361,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             place();
             sleep(500);
             sleep(750);
-            DRIVE_DISTANCE_RIGHT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            DRIVE_DISTANCE_LEFT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
             DRIVE_DISTANCE_FORWARD(22.5f,-1);
 
