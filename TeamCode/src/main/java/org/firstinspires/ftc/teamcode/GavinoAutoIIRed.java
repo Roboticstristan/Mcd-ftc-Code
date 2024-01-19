@@ -424,8 +424,10 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_LEFT(28f);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(4,1);
-        sleep(500);
+        if(pplace == 0){
+            DRIVE_DISTANCE_FORWARD(4,1);
+            sleep(500);
+        }
         TURN(1,20);
         //Add linear slide
         sleep(100);
