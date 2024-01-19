@@ -352,7 +352,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(600);
             DRIVE_DISTANCE_FORWARD(37.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(23.5f);
+            DRIVE_DISTANCE_RIGHT(20.5f);
             //This is 38 - 5.3 which takes away time *** we added changes
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
