@@ -333,8 +333,8 @@ public class GavinoAutoIIRed extends LinearOpMode {
             // Turn left to face alliance marker
             TURN(-1, 20f);
             sleep(500);
-            DRIVE_DISTANCE_FORWARD(6,1);
-            DRIVE_DISTANCE_FORWARD(6,-1);
+            DRIVE_DISTANCE_FORWARD(6,0.6);
+            DRIVE_DISTANCE_FORWARD(7,-0.6);
             DRIVE_DISTANCE_LEFT(8);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
