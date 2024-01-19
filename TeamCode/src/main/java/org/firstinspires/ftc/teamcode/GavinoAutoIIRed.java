@@ -412,7 +412,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         boxServo.setPosition(Servo.MAX_POSITION / 2);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(2.28f,-0.5);
+        LINEAR_SLIDE_DRIVE(2.2f,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
