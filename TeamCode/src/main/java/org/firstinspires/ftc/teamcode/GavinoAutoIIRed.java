@@ -395,8 +395,8 @@ public class GavinoAutoIIRed extends LinearOpMode {
         llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
         rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
         sleep(300);
-        llSlide.setPower(0.25);
-        rlSlide.setPower(0.25);
+        llSlide.setPower(0.2);
+        rlSlide.setPower(0.2);
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
         sleep(500);
@@ -433,7 +433,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
+            DRIVE_DISTANCE_RIGHT(7f); //Newly Added Code
         }
         place();
         sleep(500);
