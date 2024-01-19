@@ -412,7 +412,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         boxServo.setPosition(Servo.MAX_POSITION / 2);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(2.3f,-0.5);
+        LINEAR_SLIDE_DRIVE(2.2f,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
@@ -485,7 +485,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(-32,1);
+            DRIVE_DISTANCE_FORWARD(-32,0.8);
             sleep(2000);
             markerDetection();
             //  circumnavigate();
