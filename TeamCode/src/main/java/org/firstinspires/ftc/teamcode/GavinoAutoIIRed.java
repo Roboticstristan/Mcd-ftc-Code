@@ -441,7 +441,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         //sleep(1000);
         DRIVE_DISTANCE_LEFT(30);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(-20,1);
+        DRIVE_DISTANCE_FORWARD(-25,1);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(-5f,1);
     }
