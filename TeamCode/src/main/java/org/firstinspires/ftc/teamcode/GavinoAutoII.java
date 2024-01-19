@@ -489,7 +489,7 @@ public class GavinoAutoII extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
-            DRIVE_DISTANCE_FORWARD(-32,1);
+            DRIVE_DISTANCE_FORWARD(-32,0.8);
             sleep(2000);
             markerDetection();
           //  circumnavigate();
