@@ -335,7 +335,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(500);
             DRIVE_DISTANCE_FORWARD(6,1);
             DRIVE_DISTANCE_FORWARD(6,-1);
-            DRIVE_DISTANCE_LEFT(6);
+            DRIVE_DISTANCE_LEFT(8);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
             // Drop the pixel off of the servo
@@ -348,11 +348,11 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(1000);
             DRIVE_DISTANCE_FORWARD(-2,1);
             sleep(760);
-            DRIVE_DISTANCE_LEFT(15);
+            DRIVE_DISTANCE_LEFT(13);
             sleep(600);
             DRIVE_DISTANCE_FORWARD(37.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(17.5f);
+            DRIVE_DISTANCE_RIGHT(23.5f);
             //This is 38 - 5.3 which takes away time *** we added changes
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
@@ -361,7 +361,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             place();
             sleep(500);
             sleep(750);
-            DRIVE_DISTANCE_LEFT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            DRIVE_DISTANCE_LEFT(23f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
             DRIVE_DISTANCE_FORWARD(22.5f,-1);
 
