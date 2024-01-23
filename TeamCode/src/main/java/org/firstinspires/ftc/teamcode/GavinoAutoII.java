@@ -31,6 +31,8 @@ public class GavinoAutoII extends LinearOpMode {
     public Servo pixelServo = null;
     public Servo armServo = null;
 
+    private Servo droneServo = null;
+
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -325,7 +327,8 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(600);
             DRIVE_DISTANCE_RIGHT(32);
             sleep(500);
-            DRIVE_DISTANCE_FORWARD(-37.5f,0.75);
+            DRIVE_DISTANCE_FORWARD(-39.5f,0.75);
+
             //This is 38 - 5.3 which takes away time *** we added changes
             sleep(400);
             TURN(-1,20);
@@ -337,7 +340,7 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(500);
 
             sleep(750);
-            DRIVE_DISTANCE_RIGHT(20f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            DRIVE_DISTANCE_RIGHT(22f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
             DRIVE_DISTANCE_FORWARD(22.5f,-1);
 
@@ -404,7 +407,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(300);
         armServo.setPosition(Servo.MIN_POSITION);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(2.3f,0.5);
+        LINEAR_SLIDE_DRIVE(2.6f,0.5);
         sleep(500);
         //boxServo.setPosition(Servo.MIN_POSITION);
         DRIVE_DISTANCE_FORWARD(-10,0.7);
@@ -416,7 +419,7 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         boxServo.setPosition(Servo.MAX_POSITION / 2);
         sleep(500);
-        LINEAR_SLIDE_DRIVE(2.1f,-0.5);
+        LINEAR_SLIDE_DRIVE(2.2f,-0.5);
         sleep(500);
         armServo.setPosition(Servo.MAX_POSITION);
         sleep(200);
@@ -437,11 +440,11 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_LEFT(5.3f); //Newly Added Code
+            DRIVE_DISTANCE_LEFT(8.5f); //Newly Added Code
         }
         place();
         sleep(500);
-        DRIVE_DISTANCE_RIGHT(5.3f);
+        DRIVE_DISTANCE_RIGHT(8.5f);
         //sleep(1000);
         DRIVE_DISTANCE_RIGHT(27);
         sleep(500);
@@ -470,7 +473,7 @@ public class GavinoAutoII extends LinearOpMode {
         pixelServo = hardwareMap.get(Servo.class, "pixelServo");
         boxServo = hardwareMap.get(Servo.class, "box");
         armServo = hardwareMap.get(Servo.class,"arm");
-
+        droneServo = hardwareMap.get(Servo.class, "droneServo");
 
 
 
@@ -483,6 +486,7 @@ public class GavinoAutoII extends LinearOpMode {
          */
         pixelServo.setPosition(Servo.MIN_POSITION);
         armServo.setPosition(Servo.MAX_POSITION);
+        droneServo.setPosition(Servo.MIN_POSITION);
         waitForStart();
         runtime.reset();
 

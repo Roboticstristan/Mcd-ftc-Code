@@ -331,10 +331,12 @@ public class GavinoAutoIIRed extends LinearOpMode {
             //Drive forword before placing pixel
             // Put gate up after dropping pixel
             // Turn left to face alliance marker
+            //DRIVE_DISTANCE_RIGHT(5);
+            //DRIVE_DISTANCE_LEFT(5);
             TURN(-1, 20f);
             sleep(500);
-            DRIVE_DISTANCE_FORWARD(6,0.6);
-            DRIVE_DISTANCE_FORWARD(7,-0.6);
+            DRIVE_DISTANCE_FORWARD(6,0.8);
+            DRIVE_DISTANCE_FORWARD(5,-0.8);
             DRIVE_DISTANCE_LEFT(8);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
@@ -346,13 +348,14 @@ public class GavinoAutoIIRed extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-2,1);
+            //DRIVE_DISTANCE_FORWARD(-2,1);
             sleep(760);
             DRIVE_DISTANCE_LEFT(13);
             sleep(600);
             DRIVE_DISTANCE_FORWARD(36.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(19.5f);
+            DRIVE_DISTANCE_RIGHT(30);
+            DRIVE_DISTANCE_FORWARD(2,1);
             //This is 38 - 5.3 which takes away time *** we added changes
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
@@ -361,7 +364,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             place();
             sleep(500);
             sleep(750);
-            DRIVE_DISTANCE_LEFT(23f); // 25 -5.3 which takes away the correction; keeps it but shortens time
+            DRIVE_DISTANCE_LEFT(18f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
             DRIVE_DISTANCE_FORWARD(22.5f,-1);
 
@@ -441,7 +444,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_RIGHT(9.3f); //Newly Added Code
+            DRIVE_DISTANCE_RIGHT(8.3f); //Newly Added Code
         }
         place();
         sleep(500);
