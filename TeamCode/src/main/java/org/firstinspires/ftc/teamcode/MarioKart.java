@@ -130,7 +130,7 @@ public class MarioKart extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         arm.setPosition(0.5);
         pixelServo.setPosition(Servo.MAX_POSITION);
-        droneServo.setPosition(Servo.MIN_POSITION);
+        droneServo.setPosition(Servo.MAX_POSITION/2);
         waitForStart();
         runtime.reset();
 

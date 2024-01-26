@@ -27,6 +27,8 @@ public class GavinoAutoBlue extends LinearOpMode {
     public Servo armServo = null;
     public double ServoMax = 0.5;
     public double ServoMin = 0;
+    private Servo droneServo = null;
+
 
 
 
@@ -374,6 +376,7 @@ public class GavinoAutoBlue extends LinearOpMode {
         pixelServo = hardwareMap.get(Servo.class, "pixelServo");
         boxServo = hardwareMap.get(Servo.class, "box");
         armServo = hardwareMap.get(Servo.class,"arm");
+        droneServo = hardwareMap.get(Servo.class, "droneServo");
 
 
 
@@ -386,6 +389,7 @@ public class GavinoAutoBlue extends LinearOpMode {
          */
         pixelServo.setPosition(Servo.MIN_POSITION);
         armServo.setPosition(Servo.MAX_POSITION);
+        droneServo.setPosition(Servo.MAX_POSITION/2);
         waitForStart();
         runtime.reset();
 

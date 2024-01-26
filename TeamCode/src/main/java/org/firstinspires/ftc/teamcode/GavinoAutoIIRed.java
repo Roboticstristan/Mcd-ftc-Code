@@ -31,6 +31,8 @@ public class GavinoAutoIIRed extends LinearOpMode {
     public Servo boxServo = null;
     public Servo pixelServo = null;
     public Servo armServo = null;
+
+    private Servo droneServo = null;
     public void setDirectionForward() {
         backLeft.setDirection(DcMotor.Direction.FORWARD);
         frontRight.setDirection(DcMotor.Direction.FORWARD);
@@ -354,8 +356,8 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(600);
             DRIVE_DISTANCE_FORWARD(36.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(30);
-            DRIVE_DISTANCE_FORWARD(2,1);
+            DRIVE_DISTANCE_RIGHT(28);
+            DRIVE_DISTANCE_FORWARD(1,1);
             //This is 38 - 5.3 which takes away time *** we added changes
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
@@ -444,7 +446,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
-            DRIVE_DISTANCE_RIGHT(8.3f); //Newly Added Code
+            DRIVE_DISTANCE_RIGHT(7.5f); //Newly Added Code
         }
         place();
         sleep(500);
@@ -455,6 +457,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         DRIVE_DISTANCE_FORWARD(25,-1);
         sleep(500);
         DRIVE_DISTANCE_FORWARD(5f,-1);
+
     }
 
     @Override
@@ -477,6 +480,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         pixelServo = hardwareMap.get(Servo.class, "pixelServo");
         boxServo = hardwareMap.get(Servo.class, "box");
         armServo = hardwareMap.get(Servo.class,"arm");
+        droneServo = hardwareMap.get(Servo.class, "droneServo");
 
 
 
@@ -490,6 +494,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
          */
         pixelServo.setPosition(Servo.MIN_POSITION);
         armServo.setPosition(Servo.MAX_POSITION);
+        droneServo.setPosition(Servo.MAX_POSITION/2);
         waitForStart();
         runtime.reset();
 
