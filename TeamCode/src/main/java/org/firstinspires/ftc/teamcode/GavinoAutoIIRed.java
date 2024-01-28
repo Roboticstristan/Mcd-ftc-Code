@@ -357,6 +357,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             DRIVE_DISTANCE_FORWARD(36.5f,0.7f);
             sleep(500);
             DRIVE_DISTANCE_RIGHT(28);
+            //check in comp ( increase for more left decreace for mor right)
             DRIVE_DISTANCE_FORWARD(1,1);
             //This is 38 - 5.3 which takes away time *** we added changes
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
@@ -394,6 +395,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(1000);
             // Turn to face original
             TURN(1, 40f);
+
             DRIVE_DISTANCE_FORWARD(4,1);
             circumnavigate(0);
         }
@@ -430,16 +432,20 @@ public class GavinoAutoIIRed extends LinearOpMode {
         //DRIVE_DISTANCE_FORWARD(26f,0.8);
         //sleep(500);
         DRIVE_DISTANCE_FORWARD(-4,1);
+
         sleep(500);
+
         DRIVE_DISTANCE_LEFT(28f);
+
         sleep(500);
+
         if(pplace == 0){
             DRIVE_DISTANCE_FORWARD(-8,1);
+            //check in comp
             sleep(500);
         }
         TURN(1,20);
-        //Add linear slide
-        sleep(100);
+        sleep(300);
         DRIVE_DISTANCE_FORWARD(-5f,0.8);
         sleep(500);
         //Release
@@ -447,6 +453,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
             DRIVE_DISTANCE_RIGHT(7.5f); //Newly Added Code
+            //check in comp ( increase for more left decreace for mor right)
         }
         place();
         sleep(500);

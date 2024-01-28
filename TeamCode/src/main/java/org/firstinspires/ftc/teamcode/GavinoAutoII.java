@@ -322,23 +322,28 @@ public class GavinoAutoII extends LinearOpMode {
             sleep(1000);
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
+
             sleep(750);
+
             DRIVE_DISTANCE_FORWARD(15,0.7);
+
             sleep(600);
+
             DRIVE_DISTANCE_RIGHT(32);
+
             sleep(500);
+
             DRIVE_DISTANCE_FORWARD(-44f,0.65);
 
             //This is 38 - 5.3 which takes away time *** we added changes
             sleep(400);
+
             TURN(-1,20);
+
             sleep(750);
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
-            sleep(500);
             //DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
             place();
-            sleep(500);
-
             sleep(750);
             DRIVE_DISTANCE_RIGHT(22f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
@@ -440,17 +445,14 @@ public class GavinoAutoII extends LinearOpMode {
         sleep(500);
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
+            // check at comp
             DRIVE_DISTANCE_LEFT(9f); //Newly Added Code
         }
         place();
         sleep(500);
-        DRIVE_DISTANCE_RIGHT(8.5f);
-        //sleep(1000);
-        DRIVE_DISTANCE_RIGHT(27);
+        DRIVE_DISTANCE_RIGHT(35.5f);
         sleep(500);
-        DRIVE_DISTANCE_FORWARD(-18,1);
-        sleep(500);
-        DRIVE_DISTANCE_FORWARD(-5f,1);
+        DRIVE_DISTANCE_FORWARD(-23,1);
     }
 
     @Override
