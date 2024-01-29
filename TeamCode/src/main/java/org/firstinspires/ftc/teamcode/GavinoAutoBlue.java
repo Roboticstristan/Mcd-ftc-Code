@@ -321,6 +321,8 @@ public class GavinoAutoBlue extends LinearOpMode {
             telemetry.addData("Block Placement:", "Right");
             // Turn left to face alliance marker
             TURN(-1, 20f);
+            DRIVE_DISTANCE_FORWARD(3,0.6);
+            DRIVE_DISTANCE_LEFT(3.5f);
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
             // Drop the pixel off of the servo
@@ -338,7 +340,7 @@ public class GavinoAutoBlue extends LinearOpMode {
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
-            DRIVE_DISTANCE_FORWARD(4.5f,1);
+            DRIVE_DISTANCE_FORWARD(3.25f,1);
             sleep(1000);
             TURN(-1, 40f);
             // Wait 1 second for efficiency
@@ -396,6 +398,7 @@ public class GavinoAutoBlue extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
+            droneServo.setPosition(Servo.MAX_POSITION/2);
             DRIVE_DISTANCE_FORWARD(-32,1);
             sleep(2000);
             markerDetection();

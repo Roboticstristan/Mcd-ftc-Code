@@ -312,14 +312,24 @@ public class GavinoAutoII extends LinearOpMode {
             telemetry.addData("Block Placement:", "Left");  //Adds information to the phone
             DRIVE_DISTANCE_FORWARD(7,0.8);
             sleep(500);
-            TURN(1, 20f);   // Turning to the right 90 degrees
+            TURN(1, 20f);
+            DRIVE_DISTANCE_FORWARD(6f,0.7);// Turning to the right 90 degrees
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(-6f,0.7);// Turning to the right 90 degrees
             sleep(1000);    // Wait 1 second
+            DRIVE_DISTANCE_RIGHT(0.25f);
+            sleep(500);
+            DRIVE_DISTANCE_FORWARD(1,0.5);
             pixelServo.setPosition(Servo.MAX_POSITION); // Places the pixel
             sleep(1500);    // Wait 1.5 seconds
             //Set the purple pixel servo to the minimum preset position (set back to upward position)
             pixelServo.setPosition(Servo.MIN_POSITION);
+            DRIVE_DISTANCE_FORWARD(-1,0.5);
+            sleep(500);
+            DRIVE_DISTANCE_RIGHT(1);
             // Waiting a second so that the servo is out of way before moving
-            sleep(1000);
+            sleep(500);
+            DRIVE_DISTANCE_LEFT(2);
             // Turn back in the opposite direction with the front facing the starting position again
             TURN(-1, 20f);
 
@@ -327,24 +337,26 @@ public class GavinoAutoII extends LinearOpMode {
 
             DRIVE_DISTANCE_FORWARD(15,0.7);
 
-            sleep(600);
+            sleep(500);
 
             DRIVE_DISTANCE_RIGHT(32);
 
             sleep(500);
 
-            DRIVE_DISTANCE_FORWARD(-44f,0.65);
+            DRIVE_DISTANCE_FORWARD(-44f,0.85);
 
             //This is 38 - 5.3 which takes away time *** we added changes
             sleep(400);
 
             TURN(-1,20);
 
+            DRIVE_DISTANCE_LEFT(9);
+
             sleep(750);
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             //DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
             place();
-            sleep(750);
+            sleep(500);
             DRIVE_DISTANCE_RIGHT(22f); // 25 -5.3 which takes away the correction; keeps it but shortens time
             sleep(400);
             DRIVE_DISTANCE_FORWARD(22.5f,-1);
@@ -363,6 +375,8 @@ public class GavinoAutoII extends LinearOpMode {
             // Wait 1 second to make sure we are perfectly facing optimal drop spot
             sleep(1000);
             // Drop the pixel off of the servo
+            DRIVE_DISTANCE_LEFT(2.5f);
+            DRIVE_DISTANCE_FORWARD(1.2f,0.5);
             pixelServo.setPosition(Servo.MAX_POSITION);
             // Wait 1.5 seconds so the pixel doesn't get stuck on servo  (it gets a chance to drop out)
             sleep(1500);
@@ -370,7 +384,7 @@ public class GavinoAutoII extends LinearOpMode {
             pixelServo.setPosition(Servo.MIN_POSITION);
             // sleep so that the servo is set up correctly and not poking out
             sleep(1000);
-            DRIVE_DISTANCE_FORWARD(-2,1);
+            DRIVE_DISTANCE_FORWARD(-2.75f,1);
             sleep(760);
             TURN(1, 20f);
             sleep(740);
@@ -383,7 +397,7 @@ public class GavinoAutoII extends LinearOpMode {
             // Through process of elimination we determine that if the block is not to the left or right of us then it is in front of us
             telemetry.addData("Block Placement:", "Forward");
             // Turn 180 degrees to have the front of the robot facing the team prop assigned line
-            DRIVE_DISTANCE_FORWARD(4.5f,1);
+            DRIVE_DISTANCE_FORWARD(3f,1);
             TURN(-1, 40f);
             // Wait 1 second for efficiency
             sleep(1000);
@@ -415,8 +429,8 @@ public class GavinoAutoII extends LinearOpMode {
         LINEAR_SLIDE_DRIVE(2.6f,0.5);
         sleep(500);
         //boxServo.setPosition(Servo.MIN_POSITION);
-        DRIVE_DISTANCE_FORWARD(-10,0.7);
-        sleep(500);
+        DRIVE_DISTANCE_FORWARD(-11,0.7);
+        sleep(750);
         boxServo.setPosition(Servo.MIN_POSITION);
         //Check to see if servo can get pixel to drop by backing up a little
         sleep(1000);
@@ -446,7 +460,9 @@ public class GavinoAutoII extends LinearOpMode {
         DRIVE_DISTANCE_FORWARD(3f,0.8);
         if (pplace == 1){
             // check at comp
-            DRIVE_DISTANCE_LEFT(9f); //Newly Added Code
+            DRIVE_DISTANCE_LEFT(4.75f); //Newly Added Code
+        } else if (pplace == 0) {
+            DRIVE_DISTANCE_LEFT(2f);
         }
         place();
         sleep(500);
@@ -495,6 +511,7 @@ public class GavinoAutoII extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
+            droneServo.setPosition(Servo.MAX_POSITION/2);
             DRIVE_DISTANCE_FORWARD(-32,0.8);
             sleep(2000);
             markerDetection();

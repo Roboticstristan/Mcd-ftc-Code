@@ -356,10 +356,12 @@ public class GavinoAutoIIRed extends LinearOpMode {
             sleep(600);
             DRIVE_DISTANCE_FORWARD(36.5f,0.7f);
             sleep(500);
-            DRIVE_DISTANCE_RIGHT(28);
+            DRIVE_DISTANCE_RIGHT(27.5f);
             //check in comp ( increase for more left decreace for mor right)
-            DRIVE_DISTANCE_FORWARD(1,1);
+            DRIVE_DISTANCE_FORWARD(-1,1);
             //This is 38 - 5.3 which takes away time *** we added changes
+            sleep(300);
+            DRIVE_DISTANCE_FORWARD(2,1);
             //DRIVE_DISTANCE_FORWARD(3f,0.8);
             sleep(750);
             //DRIVE_DISTANCE_RIGHT(5.3f); //Newly Added Code
@@ -508,6 +510,7 @@ public class GavinoAutoIIRed extends LinearOpMode {
 
         //run until the end of the match (driver presses STOP)
         if (opModeIsActive()) {
+            droneServo.setPosition(Servo.MAX_POSITION/2);
             DRIVE_DISTANCE_FORWARD(-32,0.8);
             sleep(2000);
             markerDetection();

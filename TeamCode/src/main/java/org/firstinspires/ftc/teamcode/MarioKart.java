@@ -70,6 +70,7 @@ public class MarioKart extends LinearOpMode {
     public void attempt() {
         //The first time this method is called and every other time after it should preset the arm and servo to dropping position
         if (countPre % 2 != 0) {
+            box.setPosition(Servo.MAX_POSITION/2);
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
             llSlide.setPower(0.25);
@@ -84,6 +85,7 @@ public class MarioKart extends LinearOpMode {
             rlSlide.setPower(0);
         //The second time this method is called and every other time after it should preset the arm and servo to receiving position
         } else if (countPre % 2 == 0 && countPre != 0) {
+            box.setPosition(Servo.MAX_POSITION/2);
             llSlide.setDirection(DcMotorSimple.Direction.REVERSE);
             rlSlide.setDirection(DcMotorSimple.Direction.FORWARD);
             llSlide.setPower(-0.35);
@@ -96,6 +98,7 @@ public class MarioKart extends LinearOpMode {
             sleep(1000);
             llSlide.setPower(0);
             rlSlide.setPower(0);
+            box.setPosition(0);
         }
     }
 
@@ -209,7 +212,7 @@ public class MarioKart extends LinearOpMode {
                 count++;
                 if (count % 2 != 0) {
                     intake.setDirection(DcMotorSimple.Direction.REVERSE);
-                    intake.setPower(0.8);
+                    intake.setPower(0.875);
                     //motor2.setDirection(DcMotorSimple.Direction.REVERSE);
                     //motor2.setPower(1);
                 } else {
