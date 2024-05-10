@@ -4,6 +4,7 @@ import android.util.Size;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.sun.tools.javac.util.List;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -30,6 +31,8 @@ public class nuclearFission extends LinearOpMode {
                 .setAutoStopLiveView(true)
                 .setStreamFormat(VisionPortal.StreamFormat.MJPEG)
                 .build();
+
+
         waitForStart();
 
         while (!isStopRequested() && opModeIsActive()){
@@ -45,6 +48,7 @@ public class nuclearFission extends LinearOpMode {
                 telemetry.addData("pitch", tagYoureIt.ftcPose.pitch);
                 telemetry.addData("yaw", tagYoureIt.ftcPose.yaw);
             }
+
 
             telemetry.update();
         }
