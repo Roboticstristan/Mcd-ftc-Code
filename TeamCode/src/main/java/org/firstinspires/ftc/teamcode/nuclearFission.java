@@ -11,7 +11,7 @@ import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
 
-@TeleOp(name = "DomainExpanison", group = "Linear Opmode")
+@TeleOp(name = "April_Tag_Tests", group = "Linear Opmode")
 public class nuclearFission extends LinearOpMode {
 
     @Override
@@ -40,6 +40,7 @@ public class nuclearFission extends LinearOpMode {
             malevolentShrine.getFps();
             if (tagProcessor.getDetections().size() > 0){
                 AprilTagDetection tagYoureIt = tagProcessor.getDetections().get(0);
+                int idCode = tagYoureIt.id;
 
                 telemetry.addData("x", tagYoureIt.ftcPose.x);
                 telemetry.addData("y", tagYoureIt.ftcPose.y);
@@ -47,6 +48,8 @@ public class nuclearFission extends LinearOpMode {
                 telemetry.addData("roll", tagYoureIt.ftcPose.roll);
                 telemetry.addData("pitch", tagYoureIt.ftcPose.pitch);
                 telemetry.addData("yaw", tagYoureIt.ftcPose.yaw);
+                telemetry.addData("id code", idCode);
+                // trying to get the id code
             }
 
 
